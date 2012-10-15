@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/combined.css">
+	<link rel="shortcut icon" href="./favicon.ico" />
+ 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './';
+	</script>
+	<script src="./assets/js/combined.js"></script>
+	<title>FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					文档
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">目录</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>欢迎来到 FuelPHP</h2>
+
+			<p>
+				FuelPHP 是一个简单，灵活，社区驱动的 PHP5 web 框架. 它因现有框架一些不如意而诞生，被社区开发者所支持. FuelPHP 非常轻便, 能工作于大多数服务器，其清晰的语法被大家所喜爱.
+			</p>
+
+			<h3 id="quick_install">快速安装</h3>
+
+			<p>如果你非常珍惜时间，想在几秒中就可以获取, 你可以使用我们的快速安装（quick installer）. 使用 <a href="http://en.wikipedia.org/wiki/CURL">curl</a> 库, 你可以安装一个基本的 oil. 通过它可以安装一个完整 Fuel 程序.</p>
+
+			<pre class="cli"><code># 从web快速安装 oil 
+$ curl get.fuelphp.com/oil | sh
+# 现在 oil 已经安装完成， 在 Sites 目录下创建一个 blog 工程
+$ cd Sites/
+$ oil create blog</code></pre>
+
+			<p>
+				更多信息, 参看 <a href="installation/instructions.html#command">安装</a> 页面.
+			</p>
+
+			<h3 id="manual_install">手动安装</h3>
+
+			<p>
+				如果你无法使用快速安装方法, 你也可以选择手动安装 Fuelphp.
+				查看详细 <a href="installation/instructions.html#manual">安装</a> 页面.
+			</p>
+
+			<h3 id="next_steps">接下来</h3>
+
+			<ul>
+				<li>Step #1: 阅读 Fuelphp 应用程序 <a href="general/mvc.html">组件</a></li>
+				<li>Step #2: <a href="general/configuration.html">配置</a> 新安装 Fuelphp</li>
+				<li>Step #3: 学习 <a href="general/modules.html">模块</a> 和 <a href="general/packages.html">包</a></li>
+				<li>Step #4: <a href="general/controllers/base.html">创建有趣代码!</a></li>
+			</ul>
+
+			<h3 id="api_docs">类 API 文档</h3>
+
+			<p>
+				我们在线提供了所有 API 文档.
+			</p>
+
+			<h3 id="dev_docs">开发版本分支文档</h3>
+
+			<p>
+				最新官方 FuelPHP 状态.查看 <a href="http://www.fuelphp.com/dev-docs">开发版本分支文档</a>.
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

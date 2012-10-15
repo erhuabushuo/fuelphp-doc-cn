@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>类 - General - FuelPHP 文档</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					文档
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">目录</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>类</h2>
+
+			<h3 id="what_is_a_class">什么是类?</h3>
+
+			<p>一个就是一个常规 PHP 类. 在 Fuel 中，它何其他所有的类一样，不需要继承任何东西，或者遵循任何命名约定.</p>
+
+			<pre class="php"><code>class Session</code></pre>
+
+			<p>将会从 app/classes/session.php 加载.</p>
+
+			<h3 id="loading_classes">加载类</h3>
+
+			<p>不像其他框架需要手动加载. 在引用他们时自动会被加载(Controllers, Models, 等等).</p>
+
+			<h3 id="classes_subdirectories">子目录中的类</h3>
+
+			<p>Just like <a href="controllers/base.html">Controllers</a>, 类必须大写字母开头其余小写字母命名, 下划线可以告知将类放置在子目录下.</p>
+
+			<pre class="php"><code>Class Session_Driver</code></pre>
+
+			<p>将会从 app/classes/session/driver.php 加载</p>
+
+			<h3 id="classes_namespaces">类和命名空间</h3>
+
+			<p>
+				为确定加载哪个 PHP 文件, FuelPHP 针对命名空间处理和下划线规则是相似的.
+				也就是说当类在子目录下, 你可以混合使用命名空间以及下划线然针对你的需求.
+			</p>
+
+			<p>就以一个类在 app/classes/core/system/messages.php 文件为例. 这个类在文件中可以定义为:</p>
+
+				<pre class="php"><code>// 全局命名空间，完全通过下划线命名
+class Core_System_Messages {}
+
+// 结合命名空间和下划线
+namespace Core;
+class System_Messages {}
+
+// 完全通过命名空间
+namespace Core\System;
+class Messages {}
+</code></pre>
+
+			<p class="note">
+				第一个方法最通用最简单. 命名空间版本在类中结合使用 Use 语句是非常方便使用已定义类.
+			</p>
+
+			<article>
+				<h2 id="init_method">初始化类</h2>
+
+				<p>允许在类被加载时自动执行某些任务,
+					就好像 <code>__construct()</code> 初始化实例. 你可以通过在类创建一个公共静态(static)
+					<code>_init()</code> 方法.</p>
+
+				<pre class="php"><code>class Example {
+	public static function _init()
+	{
+		// this is called upon loading the class
+	}
+}</code></pre>
+
+				<p class="note">If a loaded class has its own <code>_init()</code> method and a parent must be loaded
+					alongside it, that parent's init method isn't called unless you call it using
+					<code>parent::_init();</code></p>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

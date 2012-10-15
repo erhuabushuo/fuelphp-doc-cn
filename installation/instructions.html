@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>指导 - 安装 - FuelPHP 文档</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					文档
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">目录</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h5>选择: <a href="#command">命令行安装</a> | <a href="#manual">手动安装</a></h5>
+			<br />
+			<h3 id="command">命令行安装</h3>
+		    <p class="note">当前只适用于 *nix 操作系统 (Linux, OS X, Unix, etc).</p>
+			<p>快速安装器是 oil 包提供的一个简单接口.  它可以让你通过一条命令来创建一个新的项目.  你也无需在你的 oil 命令中指明 'php'.</p>
+
+			<p>要安装快速安装器, 只需打开一个 shell 窗口运行以下命令:</p>
+
+			<pre class="cli"><code>$ curl get.fuelphp.com/oil | sh</code></pre>
+
+			<p class="note">它将要求你提供密码, 因为脚本安装在 /usr/bin 目录下.</p>
+
+			<p>现在你就可以在你的项目中用 'oil' 来代替 'php oil'.</p>
+
+			<p>要创建一个新项目只需运行:</p>
+
+			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
+
+			<p>这将在你的目录中创建一个以你提供项目名称的文件夹.  将仓库里的代码和所有子模块克隆一份在此文件夹里.</p>
+
+			<p>注意: 它也会运行<code class="cli">$ oil refine install</code>, 设置一些必要目录可写.</p>
+
+			<h3 id="manual">手动安装教程</h3>
+
+			<p>这将在你的 web 服务器上创建一个基本 Fuel 框架.</p>
+
+			<ol>
+				<li><a href="download.html">下载 Fuel 框架</a></li>
+				<li>解压下载文件</li>
+				<li>移动文件至服务器
+					<ul>
+						<li>注意源文件的 public 目录就是你服务器所指定的公共文件目录 例如
+						public_html, public, htdocs, 等等. 将文件移至这里或者子目录.</li>
+						<li>我们推荐将 fuel 目录放置在文档根目录之外，因为这样做更安全.</li>
+						<li>修改 index.php 里的一些指向你的 app, core &amp; packages 目录路径.</li>
+					</ul>
+<pre class="plain"><code>/
+  fuel/
+    app/
+    core/
+    packages/
+  public/
+    .htaccess
+    assets/
+    index.php
+  oil
+</code></pre>
+				</li>
+				<li>
+					手动设置必要可写目录, 或者运行:
+<pre class="cli"><code>$ php oil refine install
+	Made writable: APPPATH/cache
+	Made writable: APPPATH/logs
+	Made writable: APPPATH/tmp
+	Made writable: APPPATH/config
+</code>
+</pre>
+				</li>
+			</ol>
+
+			<h2 id="configuration">配置</h2>
+
+			<p>主要的配置在 app/config/config.php 文件. 依你所需设定.</p>
+
+			<h2 id="install_inside_root">安装于文档根目录</h2>
+
+			<p>在第三点我们已经阐述, 我们极度不建议在你的 web 服务器根目录下安装 Fuel.</p>
+			<p>
+				然而, 有些情况下你会那么做, 例如（本地）开发环境中，当你用于快速创建一个新的开发环境而不需要更改虚拟主机指令以及重新启动 web服务器.
+			</p>
+			<p>在那种情况下, 你需要而外添加 .htaccess 文件在你的文件根目录中, 以此来指向请求至你的 public目录下， 还必须更改 public 目录里的重写文件:</p>
+<pre class="plain"><code>
+&lt;IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	RewriteBase /public
+
+	RewriteRule ^(/)?$ index.php/$1 [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)$ index.php/$1 [L]
+&lt;/IfModule>
+</code>
+</pre>
+
+			<h2 id="setting_the_environment">设定环境</h2>
+
+			<p>
+				默认, 环境会被设为开发环境. Fuel 通过设定环境来确定使用哪个数据库配置, 你通过它来做一些其他的事情.
+			</p>
+			<p>
+				要设置环境, 在 .htaccess 文件插入以下指令.
+			</p>
+			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
+			<p>
+				可选项在 Fuel<a href="../classes/fuel.html#class_constants">类常量</a>有详细说明.
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

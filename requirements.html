@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/combined.css">
+	<link rel="shortcut icon" href="./favicon.ico" />
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './';
+	</script>
+	<script src="./assets/js/combined.js"></script>
+	<title>服务器要求 - FuelPHP 文档</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP, a PHP 5.3 Framework</strong>
+					文档
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="search" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">目录</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>要求</h2>
+			<h5 id="web_server">Web 服务器</h5>
+			<ul>
+				<li>大多数主流 web 服务器.  Fuel 已经测试于 Apache, IIS and Nginx.</li>
+				<li>工作于大多数主流操作系统，包括 *nix and Windows.</li>
+			</ul>
+			<h5 id="php_version">PHP 版本</h5>
+			<ul>
+				<li>必须是5.3或以上版本</li>
+			</ul>
+			<h5 id="php_extensions">PHP 扩展</h5>
+			<p>
+                            Fuel 使用基本PHP扩展. 为避免兼容性问题, Fuel 只使用在<a href="http://php.net">PHP官方</a>文档中记录扩展. 如果使用
+				PECL 存放的扩展 (需要系统管理员手动安装), Fuel will use them if present, and work around it if not.
+			</p>
+			<p>下面是使用扩展列表, 以及操作它们的类:</p>
+			<table class="config valign">
+				<tbody>
+					<tr>
+						<th class="small">Extension</th>
+						<th class="small">Used in</th>
+						<th>Comments</th>
+					</tr>
+					<tr>
+						<td>fileinfo</td>
+						<td>Upload</td>
+						<td><a href="http://php.net/manual/en/book.fileinfo.php">文档</a>.<br />
+						注意在 Windows 平台, 你需要使用 DLL 手动安装.</td>
+					</tr>
+					<tr>
+						<td>mbstring</td>
+						<td>n/a</td>
+						<td><a href="http://php.net/manual/en/book.mbstring.php">文档</a>.<br />
+						如果不存在, 框架不支持多字节支持. 你可以通过检查 MBSTRING 常量来确定是否支持多字节.</td>
+					</tr>
+					<tr>
+						<td>mcrypt</td>
+						<td>Crypt</td>
+						<td><a href="http://php.net/manual/en/book.mcrypt.php">文档</a>.<br />
+						如果不存在, PHPSecLib 可以代替它的基本功能.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="recommended">推荐</h3>
+			<ul>
+				<li>Web 服务器 - Apache 运行于 *nix.</li>
+				<li>PHP 版本 - 5.3.2</li>
+				<li>mod_rewrite - 在 URL 中移除 index.php.</li>
+				<li><a href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit</a> - 3.5.12</li>
+			</ul>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
