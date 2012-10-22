@@ -101,13 +101,12 @@ class Messages {}
 				<pre class="php"><code>class Example {
 	public static function _init()
 	{
-		// this is called upon loading the class
+		// 类加载时调用
 	}
 }</code></pre>
 
-				<p class="note">If a loaded class has its own <code>_init()</code> method and a parent must be loaded
-					alongside it, that parent's init method isn't called unless you call it using
-					<code>parent::_init();</code></p>
+				<p class="note">如果加载者类中调用 <code>_init()</code> 方法 并且欲加载父类此方法, 除非你手动指定
+					<code>parent::_init();</code>，否则不会自动调用父类初始化方法</p>
 			</article>
 
 		</div>

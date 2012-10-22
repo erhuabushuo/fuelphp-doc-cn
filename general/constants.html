@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Constants - General - FuelPHP Documentation</title>
+	<title>常量 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,62 +44,62 @@
 
 		<div id="main">
 
-			<h2>Constants</h2>
+			<h2>常量</h2>
 
 			<p>
-				Fuel has four constants in the global namespace to direct you to important directories. Fuel uses them internally to locate classes and other files.
-				These constants are set in <em>public/index.php</em>.
+				Fuel 全局命名空间中有四个存有四个重要目录的常量. Fuel 使用它们在内部中定位类文件和其他文件.
+				这些常量在 <em>public/index.php</em> 中设置.
 			</p>
 
 			<p class="note">
-				<strong>Note:</strong> When you move any of fuel's prime folders (app, core, public, packages) be sure to update your index.php to direct fuel to the right paths.
+				<strong>注意：</strong> 当你移动如何 fuel 原始目录 (app, core, public, packages) 时，确保更新 index.php 引导 fuel 正确路径.
 			</p>
 
 			<table class="config valign">
 				<tbody>
 					<tr class="header">
-						<th>Key</th>
-						<th>Description</th>
+						<th>键</th>
+						<th>描述</th>
 					</tr>
 					<tr>
 						<th>APPPATH</th>
 						<td>
-							Path to the application directory (<em>/path/to/fuel/app</em>).
-							This is where your application directories and code reside.
+							应用程序 (app) 路径 (<em>/path/to/fuel/app</em>).
+							这是你的应用程序目录，以及代码驻留地.
 						</td>
 					</tr>
 					<tr>
 						<th>COREPATH</th>
 						<td>
-							Path to the core directory (<em>/path/to/fuel/core</em>).
-							This is where all the Fuel classes live.
+							core 目录 (<em>/path/to/fuel/core</em>).
+							所有 Fuel 类.
 						</td>
 					</tr>
 					<tr>
 						<th>DOCROOT</th>
 						<td>
-							Path to the location where the 'startup script' is.
-							For you web application, path to the public directory (<em>/path/to/public</em>).
-							This is where index.php resides. Everything accessible to user lives and is accessible via the browser.
-							For oil command, path to where oil command resides.
+							‘启动脚本’位置.
+							应用程序中, public 目录位置 (<em>/path/to/public</em>).
+							为应用程序，这是 index.php 文件放置. 使得用户可以通过浏览器访问程序.
+							为 oil 命令， 这是 oil 命令代码存放位置.
 						</td>
 					</tr>
 					<tr>
 						<th>PKGPATH</th>
 						<td>
-							Path to the packages directory (<em>/path/to/fuel/packages</em>).
-							This is where your packages are installed (when installed through oil).
+							包 (packages) 目录 (<em>/path/to/fuel/packages</em>).
+							已安装包存放路径 (使用 oil 安装).
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
 			<p class="note">
-				<strong>Note:</strong> When you use the Oil package, you have to make the same changes in the 'oil' file in the docroot of your website.
+				<strong>注意:</strong> 当你使用 Oil 包, 你必须对网站 docroot 中 'oil' 文件作同样修改.
 			</p>
 
 			<p class="note">
-				<strong>Note:</strong> When you want to run unit tests, you have to make the same changes in the 'phpunit.xml' file in the fuelphp core folder.
+				<strong>注意:</strong> 当你想运行 unit tests, 你必须对 fuelphp core 目录中 'phpunit.xml' 进行修改.
 			</p>
 		</div>
 

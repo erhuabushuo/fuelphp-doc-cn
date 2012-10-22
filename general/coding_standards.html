@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Coding Standards - General - FuelPHP Documentation</title>
+	<title>编码标准 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,53 +44,49 @@
 
 		<div id="main">
 
-			<h2>Coding Standards</h2>
+			<h2>编码标准</h2>
 
-			<p>These standards for code formatting and documentation must be followed by anyone contributing to Fuel. Any
-				contributions that do not meet these guidelines will not be accepted.</p>
+			<p>每一个为 Fuel 贡献者都必须遵循这些代码格式和文件标准.
+				任何贡献代码若不符合这些准则，将不予接受.</p>
 
-			<h3 id="file_formatting">File Formatting</h3>
+			<h3 id="file_formatting">文件格式</h3>
 
-			<h5 id="closing_php_tag">Closing PHP Tag</h5>
+			<h5 id="closing_php_tag">PHP 结束标记</h5>
 
-			<p>Files containing only PHP code should always omit the closing PHP tag (?>). This prevents many of the
-				elusive white screens of death.</p>
+			<p>只包含PHP代码的文件应该总是忽略PHP结束标记 (?>). 以防止莫名其妙的空格.</p>
 
-			<h5 id="indentation">Indentation</h5>
+			<h5 id="indentation">缩进</h5>
 
-			<p>All indentation should be done using real tabs, NOT spaces.<br />
-				But aligning things after the indentation should be done using spaces, NOT tabs.</p>
+			<p>所有缩进都使用真实制表符缩进, 而不是空格.<br />
+				但是在缩进后想对其某些代码那么你就需要使用空格, 而不是制表符.</p>
 
-			<pre class="php"><code>		// indented 2 tabs
-		$var       = 'something';  // indented with tabs and aligned value &amp; comments
-		$variable  = 'else';       // with those above/below using spaces</code></pre>
+			<pre class="php"><code>		// 被缩进两个单位制表符
+		$var       = 'something';  // 使用制表符缩进以及使用空格对其赋值和注释
+		$variable  = 'else';       // 这周边使用空格</code></pre>
 
-			<h5 id="line_endings">Line Endings</h5>
+			<h5 id="line_endings">行尾</h5>
 
-			<p>Line endings should be Unix-style LF.</p>
+			<p>行尾应该是 Unix 风格 LF.</p>
 
-			<h5 id="file_naming">File Naming</h5>
+			<h5 id="file_naming">文件命名</h5>
 
-			<p>All file names must be all lower case. No exceptions.</p>
+			<p>所有文件名都必须是小写字母. 没有例外.</p>
 
-			<h5 id="encoding">Encoding</h5>
+			<h5 id="encoding">编码</h5>
 
-			<p>Files should be saved with UTF-8 encoding and the BOM should not be used.</p>
+			<p>文件应该保存为 UTF-8 编码，并不需要使用 BOM.</p>
 
-			<h3 id="naming_conventions">Naming Conventions</h3>
+			<h3 id="naming_conventions">命名约定</h3>
 
-			<h5 id="namespaces">Namespaces</h5>
+			<h5 id="namespaces">命名空间</h5>
 
-			<p>All core classes must be under the Fuel\Core namespace.</p>
+			<p>所有的核心类都必须是 Fuel\Core 命名空间下.</p>
 
 			<pre class="php"><code>namespace Fuel\Core;</code></pre>
 
-			<h5 id="classes">Classes</h5>
+			<h5 id="classes">类</h5>
 
-			<p>Class names should use underscores to separate words, and each word in the class name should begin with a
-				capital letter. An underscore will, however, be converted to a directory separator during autoloading. The
-				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
-				subdirectory makes no sense.</p>
+			<p>类名称应该是用下划线分隔单词, 每个单词首字母须使用大写字母. 然而在加载期间下划线会被转换为目录分隔. 我们不建议使用陀峰命名，将文件放置子目录将无法工作.</p>
 
 			<pre class="php"><code>namespace Fuel\Core;
 
@@ -106,24 +102,22 @@ class Session_Cookie extends Session_Driver
 
 }</code></pre>
 
-			<p>This would result in the following file path:</p>
+			<p>它们将视为在以下目录中:</p>
 
 			<pre class="php"><code>core/classes/session.php
 core/classes/session/cookie.php</code></pre>
 
-			<h5 id="methods_standards">Methods</h5>
+			<h5 id="methods_standards">方法</h5>
 
-			<p>Like class names, method names should use underscores to separate words, not CamelCase. Method names should
-				also be all lower case. Visibility should always be included (public, protected, private).<br />
-				An underscore can be used at the beginning of the name to make it clear the method is protected/private or
-				to signify it should be considered as such when you need it public.</p>
+			<p>和类命名一样, 方法名也使用下划线分隔单词, 不能使用陀峰命名. 方法名也必须使用小写字母. 可见性应该总是这些值 (public, protected, private).<br />
+				可以使用下划线开头命名 protected/private 方法以便一目了然 ，对 public 方法也一样容易辨别.</p>
 
 			<pre class="php"><code>class Session
 {
 
 	public static function get_flash($name, $data)
 	{
-		// Some code here
+		// 一些代码
 	}
 
 }</code></pre>
@@ -131,38 +125,35 @@ core/classes/session/cookie.php</code></pre>
 			<pre class="php"><code>class View
 {
 
-	// Array of global view data
+	// 视图数据全局数组
 	protected static $_global_data = array();
 
 	protected static function capture($view_filename, array $view_data)
 	{
-		// Some code here
+		// 一些代码
 	}
 
 }</code></pre>
 
-			<h5 id="variables">Variables</h5>
+			<h5 id="variables">变量</h5>
 
-			<p>Variable names should be concise and contain only lower case letters and underscores. Loop iterators should
-				be short, preferably a single character.</p>
+			<p>变量应当简单明了，只能包含小子字母和下划线. 循环迭代器尽可能短, 优选单字符.</p>
 
 			<pre class="php"><code>$first_name
 $buffer
 for ($i = 0; $i &lt; $max; $i++)</code></pre>
 
-			<h5 id="constants">Constants</h5>
+			<h5 id="constants">常量</h5>
 
-			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
-				case.</p>
+			<p>常量遵循变量一样的规则，但是它所有字母必须大写。</p>
 
 			<pre class="php"><code>MY_CONSTANT
 TEMPLATE_PATH
 TEXT_DEFAULT</code></pre>
 
-			<h3 id="keywords">Keywords</h3>
+			<h3 id="keywords">关键字</h3>
 
-			<p>Keywords such as <kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, etc should be all lower case, as upper case is reserved for
-				constants. Same goes for primitive types like <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd>.</p>
+			<p>例如 <kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, 等关键字需要小写, 因为大写字母预留给常量. 基本数据类型 <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd> 也是一样.</p>
 
 			<pre class="php"><code>$var = true;
 $var = false;
@@ -171,11 +162,10 @@ foreach ($array as $key => $value)
 public function my_function(array $array)
 function my_function($arg = null)</code></pre>
 
-			<h3 id="control_structures">Control Structures</h3>
+			<h3 id="control_structures">控制结构</h3>
 
-			<p>The structure keywords such as <kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> should be followed by a space as should
-				parameter/argument lists and values. Braces should be placed on a new line, and <kbd>break</kbd> should have the same
-				tab as its case.</p>
+			<p>结构关键字 <kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> 后应跟一个空格，和参数列表一样。
+                            花括号需要另起一行, <kbd>break</kbd> 应该和 case 语句相同缩进.</p>
 
 			<pre class="php"><code>if ($arg === true)
 {
@@ -221,25 +211,25 @@ switch ($var)
 	break;
 }</code></pre>
 
-			<h5 id="alternative_if">Alternative if statements</h5>
+			<h5 id="alternative_if">if 语句替代</h5>
 
-			<p>In some cases, a full <kbd>if</kbd> statement is a bit too much code for a simple conditional assignment or function
-				call. In those cases, you can use PHP's execution logic to use a shorter boolean-operator based syntax.
-				Using <kbd>and</kbd> means the second part only gets evaluated if the first part were true, using
-				<kbd>or</kbd> means the second part only gets executed if the first part were false.<br />
-				Don't use this when both <kbd>if</kbd> and <kbd>else</kbd> are needed, just in cases like single conditional statements.</p>
+			<p>在某些情况, 一个完整的 <kbd>if</kbd> 语句对于一个简单的条件赋值或者函数调用来说显得有点臃肿. 
+                            在这样情况下, 你可以使用较短的布尔运算符进行逻辑运算.
+				使用 <kbd>and</kbd> 意味只有当第一个表达式为真时才会执行第二个条件表达式, 使用
+				<kbd>or</kbd> 意味着只有当第一个表达式为假时才会执行第二个条件表达式.<br />
+				不要当需要 <kbd>if</kbd> 以及 <kbd>else</kbd> 情况下使用她们, 仅仅是单一条件表达式.</p>
 
-			<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
+			<pre class="php"><code>// 代替 if (isset($var)) { Config::set('var', $var); }
 isset($var) and Config::set('var', $var);
 
-// instead of if ( ! isset($var)) { $var = Config::get('var'); }
+// 代替 if ( ! isset($var)) { $var = Config::get('var'); }
 isset($var) or $var = Config::get('var');
 
-// DON'T DO THIS
+// 别这么做
 Uri::segment(3) and $var = Uri::segment(3);
 Uri::segment(3) or $var = 'default';
 
-// This is better:
+// 你应该这样:
 if (Uri::segment(3))
 {
 	$var = Uri::segment(3);
@@ -249,38 +239,37 @@ else
 	$var = 'default';
 }
 
-// Or this:
+// 或者这样:
 $var = Uri::segment(3) ? Uri::segment(3) : 'default';
-// Or actually this:
+// 甚至是这样:
 $var = Uri::segment(3) ?: 'default';</code></pre>
 
-			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
+			<h3 id="comparison_logical">比较, 逻辑运算符</h3>
 
-			<p>Comparing function/method returns and variables should be type aware, for example some functions may return
-				<kbd>false</kbd>, and when comparing this return the type sensitive operators such as <kbd>===</kbd> or <kbd>!==</kbd>. Additionally, use of
-				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&amp;&amp;</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
-				<kbd>&amp;&amp;</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
+			<p>比较函数返回值类型应该是明确的, 例如有些函数返回false
+				<kbd>false</kbd>, 当我们比较时应该使用类型敏感 <kbd>===</kbd> or <kbd>!==</kbd> 比较符. 此外, 使用
+				<kbd>and</kbd> or <kbd>or</kbd> 首选与 <kbd>&amp;&amp;</kbd> or <kbd>||</kbd> 提供可读性. 在某些情况下, 使用
+				<kbd>&amp;&amp;</kbd> or <kbd>||</kbd> 无法避免，也是可以作为所需. <kbd>!</kbd> 需要在两侧空一格.</p>
 
 			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
 if ($var === false or my_function() !== false)
 if ( ! $var)</code></pre>
 
-			<h5 id="class_interface">Class/Interface Declarations</h5>
+			<h5 id="class_interface">类/接口 定义</h5>
 
-			<p>Class/interface declarations have the opening brace on the following line:</p>
+			<p>类/接口定义时开始花括号在下一行:</p>
 
 			<pre class="php"><code>class Session
 {
 
 }</code></pre>
-			<p>In case the class is empty, braces will be on the same line as the definition:</p>
+			<p>当类空的情况下，花括号定义在同一行:</p>
 
 			<pre class="php"><code>class Empty_Class { }</code></pre>
 
-			<h5 id="function_method">Function/Method/Closure Declarations</h5>
+			<h5 id="function_method">函数/方法/闭包 定义</h5>
 
-			<p>The function/method/closure opening brace must always begin on a new line and have the same indentation as its
-				structure.</p>
+			<p>函数/方法/闭包中花括号必须始终另起一行，并且结构哦呢中必须使用相同缩进量.</p>
 
 			<pre class="php"><code>class Session
 {
@@ -289,35 +278,34 @@ if ( ! $var)</code></pre>
 	{
 		$closure = function($a, $b)
 		{
-			// Your closure code here
+			// 闭包代码
 		}
 	}
 
 }</code></pre>
 
-			<h5 id="variables">Variables</h5>
+			<h5 id="variables">变量</h5>
 
-			<p>When initializing variables, one variable should be declared per line. To enhance code readability, these
-				should each be on a separate line. Align values and comments when appropriate.</p>
+			<p>初始化变量时，为提高代码可读性，它们应该各自定义一行。对其赋值以及添加适当的注释，.</p>
 
 			<pre class="php"><code>$var        = ''; // do each on its own line
 $other_var  = ''; // do each on its own line</code></pre>
 
-			<h5 id="brackets_parenthesis">Brackets and Parenthesis</h5>
+			<h5 id="brackets_parenthesis">方括号和圆括号</h5>
 
-			<p>No space should come before or after the initial bracket/parenthesis. There should not be a space before closing bracket/parenthesis.</p>
+			<p>方括号和圆括号体内前后不应该有空格.</p>
 
 			<pre class="php"><code>$array = array(1, 2, 3, 4);
 $array['my_index'] = 'something';
 for ($i = 0; $i < $max; $i++)</code></pre>
 
-			<h5 id="quotation">String quotation</h5>
+			<h5 id="quotation">字符串引号</h5>
 
-			<p>Single quotes are preferred over double quotes.</p>
+			<p>单引号首选于双引号.</p>
 
-			<h5 id="concatenation">Concatenation</h5>
+			<h5 id="concatenation">连接</h5>
 
-			<p>String concatenation should not contain spaces around the joined parts.</p>
+			<p>字符串连接部分不应该包含空格.</p>
 
 			<pre class="php"><code>//yes
 $string = 'my string '.$var.' the rest of my string';
@@ -325,13 +313,13 @@ $string = 'my string '.$var.' the rest of my string';
 //no
 $string = 'my string ' . $var . ' the rest of my string';</code></pre>
 
-			<h5 id="operators">Operators</h5>
+			<h5 id="operators">操作符</h5>
 
 			<pre class="php"><code>$var = 'something';
-if ($var == 'something') //space before and after logical operator
-$var = $some_var + $other_var; //space before and after math operator
-$var++; // no space before increment
-++$var; //no space after increment</code></pre>
+if ($var == 'something') //逻辑运算符前后空格
+$var = $some_var + $other_var; //算符运算符前后空格
+$var++; // 自增运算符不出现空格
+++$var; //自增运算符后不出现空格</code></pre>
 
 		</div>
 

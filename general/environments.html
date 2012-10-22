@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Environments - General - FuelPHP Documentation</title>
+	<title>环境 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,44 +44,43 @@
 
 		<div id="main">
 
-			<h2>Environments</h2>
+			<h2>环境</h2>
 
 			<p>
-				The support of environments helps FuelPHP and your app to make decisions based on the environment setting.
-				FuelPHP itself uses the environment setting to load/overwrite additional config setting based on which
-				environment is currently active.
+				环境支持帮助 FuelPHP 以及你的应用程序基于环境做出不同的选择.
+				FuelPHP 通过当前激活环境设置加载/覆盖额外的配置信息.
 			</p>
 
-			<h3 id="possible_envs">Environments list</h3>
+			<h3 id="possible_envs">环境列表</h3>
 
 			<p>
-				FuelPHP has four predefined environments.
+				FuelPHP 有四个预定义环境.
 			</p>
 
 			<ul>
 				<li>
 					<strong>\Fuel::DEVELOPMENT</strong><br/>
-					The development environment.
+					开发环境.
 				</li>
 				<li>
 					<strong>\Fuel::TEST</strong><br/>
-					The test environment.
+					测试环境.
 				</li>
 				<li>
 					<strong>\Fuel::STAGE</strong><br/>
-					The staging environment.
+					临时环境.
 				</li>
 				<li>
 					<strong>\Fuel::PRODUCTION</strong><br/>
-					The production environment.
+					生产环境.
 				</li>
 			</ul>
 
-			<h3 id="setting_env">Set Your Environment</h3>
+			<h3 id="setting_env">设置你的环境</h3>
 
 			<p>
-				Setting your environment is done by setting the <em>FUEL_ENV</em> server var or manually changing the
-				setting in <em>fuel/app/bootstrap.php</em>.
+				通过设置 <em>FUEL_ENV</em> 服务器变量或者手动设置
+				<em>fuel/app/bootstrap.php</em> 文件来设置环境.
 			</p>
 
 			<pre class="php"><code>// Inside app/bootstrap.php
@@ -96,12 +95,10 @@
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);</code></pre>
 
-			<h3 id="env_config">Environments and Config</h3>
+			<h3 id="env_config">环境和配置</h3>
 
 			<p>
-				Based on the environment the app is set to, the Config class looks for environment-specific config files.
-				The config class will look for the same config file name in a directory that's named after the current environment.
-				Here is an example to illustrate this:
+				基于环境应用程序设置为，配置类使用环境定义的配置文件，这个配置文件将使用和环境名相同命名目录中查找。这是一个例子说明:
 			</p>
 
 			<pre class="plain"><code>app/
@@ -113,28 +110,25 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
         stuff.php</code></pre>
 
 			<p>
-				When your environment is set to <kbd>\Fuel::DEVELOPMENT</kbd>, the settings from <em>stuff.php</em> are merged with <em>development/stuff.php</em>.
-				If the environment setting is set to any other than <kbd>\Fuel::DEVELOPMENT</kbd>, the extra config file is not loaded. The same goes
-				for any other environment setting you might use.
+				当环境设置为 <kbd>\Fuel::DEVELOPMENT</kbd>, 从 <em>stuff.php</em> 设置项将会从 <em>development/stuff.php</em> 读取.
+				如果环境设置 <kbd>\Fuel::DEVELOPMENT</kbd> 被设置为任何其他, 其余的配置文件不会被加载. 这同样试用于其他任何环境设置.
 			</p>
 
 			<p>
-				A real-life example for this is the database configuration. There are no default configuration settings (this is possibly
-				very dangerous).  There are only environment-specific config settings.
+				一个此示例数据库配置真实案例. 没有默认配置选项 (有危险).  仅有环境定义配置设置.
 			</p>
 
-			<h3 id="env_apache">Using Apache configuration</h3>
+			<h3 id="env_apache">使用 Apache 配置</h3>
 
 			<p>
-				You can use the Apache configuration statement <strong>SetEnv</strong> to set the environment your application should run in.
-				In most cases this is easier then using an environment variable, and in some cases the only option if you don't have commandline
-				access to your server.
+				你可以使用 Apache 配置语句 <strong>SetEnv</strong> 为你应用程序设置环境.
+				在大多数情况下来说你可能使用环境变量会容易些, 而在你没有访问服务器命令行程序权限时，这是唯一选择.
 			</p>
 
 			<pre class="php"><code>// run this application in production mode
 SetEnv FUEL_ENV PRODUCTION</code></pre>
 
-			<p class="note">Both the variable name <strong>FUEL_ENV</strong> and the environment need to be specified in UPPERCASE.</p>
+			<p class="note">环境变量名称 <strong>FUEL_ENV</strong> 以及环境定义值都需要使用大写.</p>
 
 		</div>
 

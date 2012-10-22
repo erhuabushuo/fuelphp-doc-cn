@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Extending Core - General - FuelPHP Documentation</title>
+	<title>扩展核心 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,64 +44,57 @@
 
 		<div id="main">
 
-			<h2>Extending Core Classes</h2>
+			<h2>扩展核心类</h2>
 
-			<p><strong>Be sure to know what you are doing, extended core methods under the same name will be used by the
-			core as well as by your application and this may result in unexpected behavior.</strong></p>
+			<p><strong>请在此行为前确认你要这么做, 在程序中使用相同核心类名称可能会导致意外情况.</strong></p>
 
 			<ul>
-				<li><a href="#extend_dont_replace">Extending but not replacing the core class</a></li>
-				<li><a href="#extend_and_replace">Extending &amp; replacing core classes</a></li>
-				<li><a href="#extend_from_packages">Extending the Core from packages</a></li>
-				<li><a href="#extension_limitations">Extension limitations</a></li>
+				<li><a href="#extend_dont_replace">扩展但是不替换核心类</a></li>
+				<li><a href="#extend_and_replace">扩展以及替换核心类</a></li>
+				<li><a href="#extend_from_packages">由包扩展核心类</a></li>
+				<li><a href="#extension_limitations">扩展限制</a></li>
 			</ul>
 
 			<article>
-				<h3 id="extend_dont_replace">Extending but not replacing the core class</h3>
+				<h3 id="extend_dont_replace">扩展但是不替换核心类</h3>
 
-				<p>These are the easiest and will work like any other class you create; just make them extend the core class
-				in the global namespace:</p>
+				<p>这是一种最简单并且何其他使用类一致的方法; 只在全局命名空间中需要继承核心类:</p>
 
 				<pre><code>class MyConfig extends Config {}</code></pre>
 			</article>
 
 			<article>
-				<h3 id="extend_and_replace">Extending &amp; replacing core classes</h3>
+				<h3 id="extend_and_replace">扩展以及替换核心类</h3>
 
-				<p>If you want your core extension to be used by the core as well as by your own application you need to extend
-				it under the same name but take it from the "Fuel\Core" namespace. Below is an example for the Lang class
-				which you create in "fuel/app/classes/lang.php":</p>
+				<p>如果你想让你扩展的类做为新核心类使用，就需要使用 "Fuel\Core" 命名空间. 
+                                    以下是在 "fuel/app/classes/lang.php" 创建 Lang 类示例</p>
 
 				<pre><code>class Lang extends Fuel\Core\Lang {}</code></pre>
 
-				<p>But classes that have the same name as core classes are ignored by default. To make the Autoloader recognize
-				your replacement you need to register it in the application bootstrap file. Search for the lines below:</p>
+				<p>但是使用相同名称将会忽略核心类. 为使自动加载器(Autoloader)识别你的更换，你需要将其注册在程序引导(bootstrap)文件. 查找以下行:</p>
 
 				<pre><code>Autoloader::add_classes(array(
-	// Add classes you want to override here
+	// 在次添加你想覆盖的类
 	// Example: 'View' => APPPATH.'classes/view.php',
 ));</code></pre>
 
-				<p>As is explained in the comments you need to add the new Lang class as follows:</p>
+				<p>根据注释中说明你需要按照如下增加新 Lang 类:</p>
 
 				<pre class="php"><code>Autoloader::add_classes(array(
-	// Add classes you want to override here
+	// 在次添加你想覆盖的类
 	// Example: 'View' => APPPATH.'classes/view.php',
 	'Lang' => APPPATH.'classes/lang.php',
 ));</code></pre>
 
-				<p>After this the core class will have been replaced by your extension.</p>
-				<p class="note">The core class will still be available when used with full namespace prefixed. With the above example of
-				extending "Lang" you can still use the original by calling "Fuel\Core\Lang".</p>
+				<p>这样核心类就被你的扩展类替换.</p>
+				<p class="note">核心类仍然可以通过全局命名空间前缀生效. 以上扩展 "Lang" 示例情况下，你仍然可以通过 "Fuel\Core\Lang" 调用.</p>
 			</article>
 
 			<article>
-				<h3 id="extend_from_packages">Extending the Core from packages</h3>
+				<h3 id="extend_from_packages">由包扩展核心类</h3>
 
-				<p>By adding your package as a core namespace the autoloader will attempt to load any class from your package
-					before it attempts it from the core. You must register these classes with the Autoloader though in order
-					for them to be detected (filesystem autoloader doesn't support aliasing to global). Below is an example for
-					extending the <kbd>View</kbd> class.</p>
+				<p>通过增加包来作为核心命名空间，当你尝试使用核心类，加载器(autoloader)将尝试加载该包中类. 你必须通过使用 Autoloader 注册这些类以被引用(文件系统加载器不支持全局别名). 以下是
+					扩展 <kbd>View</kbd> 类示例.</p>
 
 				<pre class="php"><code>Autoloader::add_core_namespace('Example');
 
@@ -111,9 +104,9 @@ Autoloader::add_classes(array(
 			</article>
 
 			<article>
-				<h3 id="extension_limitations">Extension limitations</h3>
+				<h3 id="extension_limitations">扩展限制</h3>
 
-				<p>All classes can be extended from app. Most classes can be extended from packages but there are a few exceptions:</p>
+				<p>可以扩展所有 app 类. 大多数可以由包（package)扩展类，但是有以下例外:</p>
 
 				<ul>
 					<li><kbd>Fuel</kbd></li>
@@ -121,14 +114,13 @@ Autoloader::add_classes(array(
 					<li><kbd>Profiler</kbd></li>
 					<li><kbd>Security</kbd></li>
 					<li><kbd>Event</kbd></li>
-					<li>Any class you use in your main <kbd>app/config/config.php</kbd></li>
+					<li>任何在 <kbd>app/config/config.php</kbd> 使用的主要类</li>
 				</ul>
 
-				<h4>Autoloader</h4>
-				<p>The Autoloader class is a special case, you can only extend it once as <code>Autoloader</code> and
-					have it used. After extending it you have to require it manually in the <kbd>app/bootstrap.php</kbd>
-					file after the original <code>Fuel\Core\Autoloader</code>, don't forget to remove the line that
-					aliases the core class to global.</p>
+				<h4>自动加载(Autoloader)</h4>
+				<p>加载器 Autoloader 类是一个特殊情况, 你只能当 <code>Autoloader</code> 使用时扩展
+					. 扩展后你需要在使用原始<code>Fuel\Core\Autoloader</code>之后手动加载文件 <kbd>app/bootstrap.php</kbd>
+					, 别忘记了移除核心类全局别名.</p>
 			</article>
 
 		</div>
