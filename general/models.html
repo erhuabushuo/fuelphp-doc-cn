@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Models - General - FuelPHP Documentation</title>
+	<title>模型 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,24 +44,21 @@
 
 		<div id="main">
 
-			<h2>Models</h2>
+			<h2>模型</h2>
 
-			<h3>What are models?</h3>
-
-			<p>
-				Whenever data needs to be retrieved, manipulated or deleted this should always be done by a model. A Model is a representation of some kind of
-				data and has the methods to change them. For example: you never put SQL queries in a Controller, those are put in the Model and the Controller will
-				call upon the Model to execute the queries. This way if your database changes you won't need to change all your Controllers but just the Model that acts upon it.
-			</p>
-
-			<h3 id="using_models">How are Models used?</h3>
+			<h3>什么是模型?</h3>
 
 			<p>
-				In Fuel a Model is essentially just a <a href="classes.html" title="Class Documentation">Class</a> like any other. They do nothing more than a library, but the Model_ prefix
-				helps to differentiate it from other classes. To do something useful with a Model you will need to use other classes.
+				无论何时想取得数据, 操作还是删除都应该总是在模型中执行. 模型是一个表示某种类型的数据，并且含有改变它们的方法. 例如: 不将 SQL 语句放置在控制器中, 而放置在模型中,控制器调用模型来执行查询. 这能让你再改变数据库时而不需要改变你控制器代码，只需要修改调用的模型代码.
 			</p>
 
-			<h3 id="creating_models">Creating a model</h3>
+			<h3 id="using_models">如何使用模型?</h3>
+
+			<p>
+				Fuel 模型本质上和其他一样就一个<a href="classes.html" title="Class Documentation">类</a>. 没有比一个库更多的工作, 但是 Model_ 前缀帮助区分与其他类不通. 为让模型更有用你可能需要使用其他类.
+			</p>
+
+			<h3 id="creating_models">创建一个模型</h3>
 
 			<pre class="php"><code>
 namespace Model;
@@ -75,15 +72,12 @@ class Welcome extends \Model {
 
 }</code></pre>
 
-			<p class="note">Remember to prefix a backslash to classes you're using from global, outside the namespace
-				you're in. If you don't understand why, read up on namespaces on
+			<p class="note">记住以反斜线作为前缀你将使用全局命名控制, 在你命名控制外。 如果你不能理解, 查看命名空间在
 				<a href="http://www.php.net/namespaces">PHP.net</a>.</p>
 
-			<h3 id="accessing_models">Accessing a model</h3>
+			<h3 id="accessing_models">访问一个模型</h3>
 
-			<p>PHP has the <code>use</code> keyword for importing classes into the current namespace, this allows
-				you to shorten the Model's classname from <code>Model\Welcome</code> to just <code>Welcome</code>
-				within the file of a specific class:</p>
+			<p>PHP 使用 <code>use</code> 关键字将类导入到当前命名空间, 这样就允许你缩短模型类名称 <code>Model\Welcome</code> 为 <code>Welcome</code> 在已定义类文件中:</p>
 
             <pre class="php"><code>
 use \Model\Welcome;
@@ -98,33 +92,29 @@ class Controller_Welcome extends Controller
 
 
 
-			<h3 id="writing_own_models">Writing your own models</h3>
+			<h3 id="writing_own_models">创建你自己的模型</h3>
 
-			<p>While models can be used with any type of data storage we'll focus here on usage with SQL because that's the
-				most common usage. Almost always your models will have at least all <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
-				methods: create, read, update, delete (or variations on those). In Fuel your models don't need to extend
-				anything by default, though you can of course create your own base model or use Fuel's
-				<a href="#orm_models">Orm package</a>.</p>
+			<p>虽然模型可以用任何类型存储数据，我们主要关注于 SQL，因为它更通用. 几乎总是在你的模型中有 <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
+				方法: create, read, update, delete (或者这些基础上的变化). 在 Fuel 中，你的模型无需继承任何东西, 你可以创建你自己的基础模型，或者使用 Fuel的 <a href="#orm_models">Orm包</a> .</p>
 
-			<h3 id="writing_queries">Writing SQL Queries</h3>
+			<h3 id="writing_queries">创建 SQL 查询</h3>
 
-			<p>You can use the <a href="../classes/database/db.html">DB class</a> to build queries with native SQL like so:</p>
+			<p>你可以使用 <a href="../classes/database/db.html">DB 类</a> 构造原生 SQL语句，就像:</p>
 
 			<pre class="php"><code>DB::query('SELECT * FROM users WHERE id = 5');</code></pre>
 
-			<h3 id="use_query_builder">Using the Query Builder</h3>
+			<h3 id="use_query_builder">使用查询构造器</h3>
 
-			<p>When it comes to escaping data, working with data in arrays or making an application portable over multiple database engines, you might find native
-				SQL to be rather cumbersome. Using the Query Builder methods in the DB Class you can abstract writing native SQL:
+			<p>当需要过滤数据, 通过数组使用数据或者创建一个可移植的多数据库引擎, 你会发现使用原生 SQL 非常繁琐. 使用 DB 类的查询构造器方法，你可以抽象的写原生 SQL:
 			</p>
 
 			<pre class="php"><code>DB::select('title','content')->from('articles')->execute()->get('title');</code></pre>
 
-			<p>See more about native SQL queries and using the Query Builder in the <a href="../classes/database/db.html">DB class</a> documentation.</p>
+			<p>查看更多关于原生 SQL查询和使用查询构造器在<a href="../classes/database/db.html">DB 类</a> 文档.</p>
 
-			<h3 id="model_crud_models">Using Model_Crud to create models</h3>
+			<h3 id="model_crud_models">使用 Model_Crud 创建模型</h3>
 
-			<p>One possible way of creating models is by using <a href="../classes/model_crud/introduction.html">Model_Crud</a>, which adds a commonly used functionality to your models for interacting with a database table. There's an example of its usage below.</p>
+			<p>有种方式是使用 <a href="../classes/model_crud/introduction.html">Model_Crud</a> 创建模型, 它提供了基本的数据库表操作. 以下是一些例子.</p>
 
 			<pre class="php"><code>// find all articles
 $entry = Model_Article::find_all();
@@ -135,9 +125,9 @@ $entry = Model_Article::find(array(
     'order_by' => array('date' => 'desc')
 ));</code></pre>
 
-			<h3 id="orm_models">Using the Orm to create models</h3>
+			<h3 id="orm_models">使用 Orm 创建模型</h3>
 
-			<p>For models with more functionality, like support for relations, you can use the <a href="../packages/orm/intro.html">Orm Package</a>, which adds a lot of functionality out-of-the-box to your models. There's an example of its usage below.</p>
+			<p>为使模型具备更多功能, 例如支持关联, 你可以使用 <a href="../packages/orm/intro.html">Orm 包</a>, 具有许多即用性的功能. 下面是一些用例.</p>
 
 			<pre class="php"><code>// find all articles
 $entry = Model_Article::find('all');
@@ -148,7 +138,7 @@ $entry = Model_Article::find('all', array(
     'order_by' => array('date', 'desc')
 ));</code></pre>
 
-			<p>Model_Crud and the ORM package use similar syntax, which makes it simple to migrate once you require more functionality than Model_Crud can provide.</p>
+			<p>Model_Crud 和 ORM 使用相似的语法, 以便迁移.</p>
 
 		</div>
 
