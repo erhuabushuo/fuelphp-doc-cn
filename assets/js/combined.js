@@ -368,7 +368,7 @@ panes.main = {
 		"环境":		"general/environments.html",
 		"模型-视图-控制器":	"general/mvc.html",
 		"模型":			"general/models.html",
-		"Views":			"general/views.html",
+		"视图":			"general/views.html",
 		"ViewModels":		"general/viewmodels.html",
 		"Controllers": {
 			"Base" :		"general/controllers/base.html",

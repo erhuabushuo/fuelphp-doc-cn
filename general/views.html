@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Views - General - FuelPHP Documentation</title>
+	<title>视图 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -46,15 +46,15 @@
 
 			<h2>Views</h2>
 
-			<h3 id="what_is_a_view">What is a view?</h3>
+			<h3 id="what_is_a_view">什么是视图?</h3>
 
-			<p>Views are files that present data to the browser. These files enable the separation of logic and presentation for your application. Views are typically html, javascript, or css but can contain variables passed into them from the controller.</p>
+			<p>视图将数据呈现浏览器. 它将你的逻辑和显示区分开. 视图通常是 html, javascript, 或者 css 也可以是从控制器传递的变量.</p>
 
-			<h3>Creating a view</h3>
+			<h3>创建一个视图</h3>
 
-			<p>In FuelPHP, Views are located in the fuel/app/views directory. Views can be located in subdirectories. Views are named by their directory path from the fuel/app/views and the file name, so a view file located <em>fuel/app/views/user/join.php</em> would be named <kbd>user/join</kbd>.</p>
+			<p>在 FuelPHP, 视图放置在 fuel/app/views 目录. 视图也可以放置再子目录中. 通过在 fuel/app/views 下的目录名和文件名命名, 那么当一个视图文件置于 <em>fuel/app/views/user/join.php</em> 中可以使用 <kbd>user/join</kbd> 加入.</p>
 
-			<p>Example:</p>
+			<p>例如:</p>
 
 	<pre class="html"><code>&lt;html&gt;
 	&lt;head&gt;
@@ -66,9 +66,9 @@
 &lt;/html&gt;
 </code></pre>
 
-			<h3 id="using_views">Using views</h3>
+			<h3 id="using_views">使用视图</h3>
 
-			<p>Views in the Fuel framework are very flexible. You can create a single view and nest views within other views. This can be done multiple ways.</p>
+			<p>视图在 Fuel 框架中非常灵活. 创建一个视图时你可以内嵌其他视图. 有多种方法实现.</p>
 
 			<p><strong>Example View (fuel/app/views/home/index.php):</strong></p>
 			<pre class="html"><code>&lt;html&gt;
@@ -81,7 +81,7 @@
 &lt;/html&gt;
 </code></pre>
 
-			<p><strong>Method 1 (using example view above):</strong></p>
+			<p><strong>Method 1 (使用视图):</strong></p>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
@@ -95,7 +95,7 @@
 	return View::forge('home/index', $data);
 }</code></pre>
 
-			<p><strong>Method 2 (using example view above):</strong></p>
+			<p><strong>Method 2 (使用视图):</strong></p>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
@@ -114,11 +114,11 @@
 	return $view;
 }</code></pre>
 
-			<h3 id="security">Security</h3>
+			<h3 id="security">安全</h3>
 
-			<p>Views use output encoding to sanitize anything you pass to them. In a default installation, the security method
-				Security::htmlentities() is defined as output filter. You can modify the filters in your applications config.php file.
-				If you want to pass something unfiltered, you can use the method <kbd>set($name, $value, false)</kbd>.</p>
+			<p>视图使用输出编码进行数据过滤. 默认安装时, 安全方法
+				Security::htmlentities() 被定义为默认过滤器. 你可以通过程序中 config.php 文件然修改过滤器.
+				如果你想传递一些数据不进行过滤, 你可以使用方法 <kbd>set($name, $value, false)</kbd>.</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
 {
@@ -140,12 +140,10 @@
 	}
 }</code></pre>
 
-			<p>If you don't want your View to work like this, you can pass <kbd>false</kbd> as third argument <kbd>View::forge()</kbd>
-			Now anything added to this View object will be unfiltered.  If you then do want some values filtered, you can use
+			<p>如果你不想通过这种方法来控制, 你也可以通过通过传递第三个参数 <kbd>false</kbd> 给 <kbd>View::forge()</kbd>
+			现在像这个视图添加任何值都是未过滤.  如果你想某些数据过滤, 你可以通过
 			<kbd>set($name, $value, true)</kbd>.<br />
-			You can also globally disable the output filter by setting the application
-			configuration value <kbd>security.auto_filter_output</kbd> to <kbd>false</kbd>. For security reasons it is highly recommended
-			that you don't do this!</p>
+			你也可以通过在程序配置文件中将 <kbd>security.auto_filter_output</kbd> 设置为 <kbd>false</kbd> 然禁用全局过滤. 因安全问题，我们强烈建议您不要这么做!</p>
 
 			<p class="note"><strong>Note on objects:</strong> Unless the passed object is of the type View, ViewModel or Closure, it is
 			expected to have a <kbd>__toString()</kbd> method and forced to be a string when output filtering is enabled. If you want
@@ -155,22 +153,18 @@
 			not sanitized. Closures cannot be sanitized, and you should take care to ensure this is done within them if
 			necessary.</p>
 
-			<h3>Lazy rendering</h3>
+			<h3>后呈现</h3>
 
 			<p>
-				When instantiating a view object, only the environment needed to generate output is setup. The view file is not
-				being read, no variables will be interpreted, and no output will be rendered.
+				当示例化一个视图对象, 只有当环境需要产生输出时. 视图文件不会加载, 没有变量被解释，没有任何输出.
 			</p>
 			<p>
-				This only happens when you explicitly call the <code>render()</code> method on the view object or when you
-				cast the view object to a string (which happens automatically when you echo it). This means no views are processed
-				until it's absolutely needed. It also means that Fuel doesn't keep rendered views in memory until it is time to
-				send them to the browser.
+				只有当你指明视图对象 <code>render()</code> 方法或者你将视图对象转为字符串对象(输出时自动转换). 也就意味着直到的确需要时它菜会执行，也就是说 Fuel 并没有将视图放置内存中，只有当明确指明时才发送至浏览器.
 			</p>
 
-			<h3>Nesting Views</h3>
+			<h3>嵌套视图</h3>
 
-			<p>Views can also be nested to contain other views. This can be done multiple ways.</p>
+			<p>视图可以嵌套其他视图. 有多种方法可以实现.</p>
 
 			<h3>Example Views</h3>
 
@@ -207,7 +201,7 @@
 	&amp;copy; Copyright &lt;?php echo date(&#0x27;Y&#0x27;);?&gt; &lt;?php echo $site_title; ?&gt;
 &lt;/div&gt;</code></pre>
 
-			<h3 id="method_one">Method 1 (using example views above and lazy rendering):</h3>
+			<h3 id="method_one">Method 1 (后呈现方法显示以上视图):</h3>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
@@ -233,7 +227,7 @@
 	}
 }</code></pre>
 
-			<h3 id="method_two">Method 2 (using example views above and forced rendering):</h3>
+			<h3 id="method_two">Method 2 (立即呈现使用以上视图):</h3>
 
 			<pre class="php"><code>class Controller_Home extends Controller
 {
