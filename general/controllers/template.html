@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Template Controller - General - FuelPHP Documentation</title>
+	<title>模板控制器 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,19 +44,18 @@
 
 		<div id="main">
 
-			<h2>Template Controller</h2>
+			<h2>模板控制器</h2>
 
-			<h3>What is a template controller?</h3>
+			<h3>什么是模板控制器?</h3>
 
-			<p>A Template Controller is an extension of the Base Controller which has template support built in using some pre-defined before() and after() methods. Basically it can be used to wrap
-			your view in a layout with a header, footer, sidebar, etc.</p>
+			<p>一个模板控制器是基础控制器拥有一些内建一些预定义 before() 和 after() 方法扩展 . 大致上来说它可以被用来包裹你的视图通过使用包含 header, footer, sidebar等的layout</p>
 
-			<h3>Using the template controller</h3>
+			<h3>使用模板控制器</h3>
 
-			<p>Like all Controllers you create a class in the <kbd>fuel/app/classes/controller</kbd> directory. They need to extend the <kbd>Controller_Template</kbd> class and are prefixed by default by "Controller_". Below is an example of the controller "example": </p>
+			<p>和所有控制器一样在 <kbd>fuel/app/classes/controller</kbd> 目录创建. 他们需要继承 <kbd>Controller_Template</kbd> 类 以及使用默认 "Controller_" 前缀定义. 以下是一个 "example" 示例: </p>
 
-			<p class="note"><strong>Please note:</strong> by default, all methods of a class that extends Controller_Template will use the template.
-			<br />However, it is possible to <a href="#omit_methods">omit methods</a> from the template.</p>
+			<p class="note"><strong>注意:</strong> 默认, 所有继承 Controller_Template 类都将使用模板.
+			<br />但是, 可以使用从模板中<a href="#omit_methods">忽略方法</a> .</p>
 
 	<pre><code>class Controller_Example extends Controller_Template
 {
@@ -68,12 +67,10 @@
 	}
 }</code></pre>
 
-			<h3>Using the template controller with before() and/or after()</h3>
+			<h3>模板控制器中使用 before() 和 after()</h3>
 
-			<p class="note"><strong>Please note:</strong> if you have a before() method in your template controller extension you
-				<strong>must</strong> add <kbd>parent::before();</kbd> to that method or the <kbd>$this->template</kbd> will
-				not be available. <strong>Make after() compatible</strong> with that of the Controller_Template:
-				use <kbd>after($response)</kbd> instead of just after().</p>
+			<p class="note"><strong>注意:</strong> 如果你在模板控制器中使用 before() 方法那么<strong>必须</strong> 添加 <kbd>parent::before();</kbd> 至该方法 否则 <kbd>$this->template</kbd> 将无效. <strong>为使 after() 可兼容</strong> 在 Controller_Template:
+				使用 <kbd>after($response)</kbd> 代替 after().</p>
 
 
 	<pre><code>class Controller_Example extends Controller_Template
@@ -108,11 +105,10 @@
 	}
 }</code></pre>
 
-			<h3>Example template</h3>
+			<h3>模板示例</h3>
 
 			<p>
-				The template file is a great place to call up your JS, CSS, etc, structure your HTML and call view partials. It allows you to give your output
-				structure. It is just a view file, by default the Template Controller will look here: <kbd>fuel/app/views/template.php</kbd>.
+				该模板文件调用了 JS, CSS, 等等, 结构化 HTML以及调用部分视图. 它允许你提供自己的输出结构. 它仅仅是个视图文件, 模板控制器默认会加载从: <kbd>fuel/app/views/template.php</kbd> .
 			</p>
 
 	<pre><code>&lt;!DOCTYPE html>
@@ -134,11 +130,11 @@
 &lt;/body>
 &lt;/html></code></pre>
 
-			<h3>Changing the default template file</h3>
+			<h3>改变默认模板文件</h3>
 
 			<p>
-				You can easily change the default <kbd>APPPATH/views/template.php</kbd> file to something different.<br/>
-				You must set the public variable <kbd>$template</kbd> (note: you don't need .php extension here) to something different, example:
+				你可以很简单改变 <kbd>APPPATH/views/template.php</kbd> 文件为其他.<br/>
+				你需要设置公共变量 <kbd>$template</kbd> (注意: 不需要添加 .php 扩展) 为其他文件, 例如:
 			</p>
 
 	<pre><code>class Controller_Example extends Controller_Template
@@ -153,12 +149,12 @@
 	}
 }</code></pre>
 
-		<h3 id="omit_methods">Omit methods from the Template Controller</h3>
+		<h3 id="omit_methods">从模板控制器忽略方法</h3>
 
 		<p>
-			By default, all methods of a class that extends <kbd>Controller_Template</kbd> will use the template.<br />
-			If you want to omit methods from the template, you can do this by returning something else in a
-			<kbd>Response</kbd> object. That will overwrite the default template output.
+			默认, 所有继承 <kbd>Controller_Template</kbd> 方法都将使用模板.<br />
+			如果你想方法忽略模板, 你可以返回
+			<kbd>Response</kbd> 对象. 它将覆盖默认模板输出.
 		</p>
 
 		<pre><code>class Controller_Example extends Controller_Template
