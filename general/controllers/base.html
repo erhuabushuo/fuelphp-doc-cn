@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Controller - General - FuelPHP Documentation</title>
+	<title>控制器 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -46,22 +46,17 @@
 
 			<h2>Controllers</h2>
 
-			<h3 id="what_is_a_controller">What is a controller?</h3>
+			<h3 id="what_is_a_controller">什么是控制器?</h3>
 
 			<p>
-				Controllers are classes that can be reached through the URL and take care of handling the request.
-				A controller calls models and other classes to fetch the information. Finally, it will pass everything
-				to a view for output. If a URL like www.yoursite.com/example/index is requested, the first segment
-				("example") will be the controller that is called and the second segment ("index") will be the method
-				of that controller that is called.
+				控制器是可以通过 URL 访问以及处理请求的类.控制器可以调用模型或者其他类来取得信息. 最后, 传递数据给视图显示. 如果访问 www.yoursite.com/example/index , 第一部分
+				("example") 将被视为控制器 ，而第二部分 ("index") 将被视为该控制器内的方法进行调用。
 			</p>
 
-			<h3 id="creating_a_controller">Creating a controller</h3>
+			<h3 id="creating_a_controller">创建一个控制器</h3>
 
 			<p>
-				In FuelPHP, Controllers are put in the <kbd>fuel/app/classes/controller</kbd> directory, and are prefixed
-				with <kbd>"Controller_"</kbd>. 	Optionally, they should extend the <kbd>Controller</kbd> class for the full
-				feature set. Below is an example of the controller "example":
+				在 FuelPHP, 控制器放在 <kbd>fuel/app/classes/controller</kbd> 目录下, 并且以  <kbd>"Controller_"</kbd> 前缀命名. 	可选择的, 他们继承 <kbd>Controller</kbd> 类获取完整功能集. 以下是一个控制器 "example" 示例:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -75,16 +70,14 @@
 }</code></pre>
 
 			<p>
-				Methods that can be requested through the URL are prefixed with <kbd>"action_"</kbd>. This means
-				that you're not limited by PHP's constructs on which name you might use (example: method "list"
-				isn't allowed, "action_list" is no problem). But this also means you can give your controller public
-				methods that can be used from other classes but are not routable.
+				使用方法名前缀 <kbd>"action_"</kbd> 可以通过 URL 访问. 也就意味着你的方法名不受限 PHP 结构 (example: 方法 "list"
+				不路由, "action_list" 可以路由). 那么当你的控制器可以使用公共方法让其他类使用，但是他不被路由.
 			</p>
 
-			<h3 id="http_method_prefixed_actions">HTTP method prefixed action.</h3>
+			<h3 id="http_method_prefixed_actions">HTTP 动作前缀方法.</h3>
 
 			<p>
-				It's possible to route to HTTP method prefixed actions. Here is an example:
+				也可以通过 HTTP 动作前缀方法路由. 示例:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller
@@ -101,32 +94,29 @@
 }
 </code></pre>
 
-			<h4 id="controller_in_subdir">Controllers in Sub-Directories</h4>
+			<h4 id="controller_in_subdir">子目录控制器</h4>
 
 			<p>
-				You can also put a controller in a subdirectory, like
-				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. In this case, the controller must include
-				the dirname in the classname like this: <var>Controller_Subdir_Test</var>.
+				你也可以将控制器放置在子目录中, 例如
+				<kbd>fuel/app/classes/controller/subdir/test.php</kbd>. 这样的情况下, 控制器类就必须在名字中包含目录名: <var>Controller_Subdir_Test</var>.
 			</p>
 
 			<p>
-				Unlimited nested sub-directories are supported, so
-				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. would have a class name of
+				不限制嵌套目录数, 所以
+				<kbd>fuel/app/classes/controller/subdir1/subdir2/subdir3/test.php</kbd>. 类名应该是
 				<var>Controller_Subdir1_Subdir2_Subdir3_Test</var>.
 			</p>
 
-			<h4 id="controller_namespacing">Namespacing controllers</h4>
+			<h4 id="controller_namespacing">控制器使用命名空间</h4>
 
 			<p>
-				As mentioned in the introduction by default controllers are created in the <kbd>app/classes/controller</kbd> folder,
-				and are prefixed with <var>Controller_</var>. This prefix is defined in your <kbd>app/config/config.php</kbd> configuration file
-				(and if not this is the default), but can be changed if you want to namespace your controllers, or if you
-				want to move them to a different folder structure.
+				我们提到控制器默认在 <kbd>app/classes/controller</kbd> 创建,
+				以及使用 <var>Controller_</var> 前缀. 这个前缀在 <kbd>app/config/config.php</kbd> 配置文件配置
+				(如果没有的话，它也就是默认值), 但是可以改变控制器命名空间, 或者你想将它们移至不同目录结构.
 			</p>
 
 			<p>
-				Lets move the example given above to the <kbd>Controller</kbd> namespace. You tell FuelPHP that you've done this by setting the
-				config setting <var>controller_prefix</var> to <kbd>'\\Controller\\'</kbd> in your app's config.php file.
+				让我们更改示例为以下 <kbd>Controller</kbd> 命名空间. 你需要给 FuelPHP config.php 配置文件配置选项 <var>controller_prefix</var> 为 <kbd>'\\Controller\\'</kbd>.
 			</p>
 
 			<pre class="php"><code>namespace Controller;
@@ -145,9 +135,9 @@ class Example extends Controller
 
 
 
-			<h4 id="more_parameters">Using more parameters from the URL</h4>
+			<h4 id="more_parameters">从 URL 使用更多的参数</h4>
 
-			<p>Let say we also have the following method in our Controller_Example: </p>
+			<p>假设在 Controller_Example 控制器中我们拥有如下方法: </p>
 
 	<pre class="php"><code>public function action_name_to_upper($name_1, $name_2)
 {
@@ -157,79 +147,70 @@ class Example extends Controller
 }</code></pre>
 
 			<p>
-				If we call this method using: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd>, it will
-				return the view <kbd>test/name_to_upper</kbd>. "FUEL" and "PHP" will be passed along as values
-				<var>$name_1</var> and <var>$name_2</var> in the <var>$data</var> array.
+				如果我们使用: <kbd>www.yoursite.com/example/name_to_upper/fuel/php</kbd> 调用这个方法, 将返回视图 <kbd>test/name_to_upper</kbd>. "FUEL" 和 "PHP" 通过
+				<var>$name_1</var> 和 <var>$name_2</var> 存入 <var>$data</var> 数组.
 			</p>
 
-			<h4 id="returning_results">Returning the result</h4>
-
-			<p>
-				A controller action <strong>MUST</strong> return a Response object. Optionally you can specify special HTTP headers,
-				or a custom HTTP status code (a code other than "200 OK").
-			</p>
+			<h4 id="returning_results">返回结果</h4>
 
 			<p>
-				If your controller extends one of the base controllers, your action can also return any value that can be cast to string,
-				like for example a View object. The after() method of the base controller will convert it into a Response object for you.
-			</p>
-			<p>
-				If your controller does not extend one of the base controllers, and you want to use this feature,
-				your controller must contain it's own after() method that will accept the actions return value, and has to wrap it into
-				a Reponse object which it must return.
+				一个控制器行为 <strong>必须</strong> 返回 （输出）Response 对象. 你也可以选择输出 HTTP 头,
+				或者自定义个 HTTP 状态码(其他不同于 "200 OK" 状态码).
 			</p>
 
-			<h3 id="special_methods">Special controller methods</h3>
+			<p>
+				如果你的控制器是继承于一个基础控制器, 你的行为可以返回任何可以转换为字符串对象,
+				例如视图对象.  after() 基础控制器会为你将它转换入输出（Response）对象.
+			</p>
+			<p>
+				如果你的控制器没有继承任何基础控制器, 如果你想使用这个特性,
+				你的控制器需要自己创建 after() 方法来接受返回值, 以及包裹返回输出（Reponse）对象.
+			</p>
+
+			<h3 id="special_methods">特殊控制器方法</h3>
 
 			<p class="note">
-				Don't overwrite the class constructor <kbd>__construct()</kbd>, use <kbd>before()</kbd> instead.
-				Unless you have studied the base Controller from the Core first and understand how it must be extended
-				not to break Fuel.
+				不要覆盖类构造方法 <kbd>__construct()</kbd>, 使用 <kbd>before()</kbd> 代替.
+				除非你已经学习了核心类以及了解如何扩展以致不会中断 Fuel 运行.
 			</p>
 
 			<article>
 				<h4 id="action_index">action_index()</h4>
 				<p>
-					This method will be called if the controller is called without a second parameter. In the above
-					example <kbd>www.yoursite.com/example/index</kbd> will be the same as
-					<kbd>www.yoursite.com/example</kbd>.
+					这个方法在访问控制器未提供个二个参数时自动调用. 例如 <kbd>www.yoursite.com/example/index</kbd> 和
+					<kbd>www.yoursite.com/example</kbd> 一样.
 				</p>
 			</article>
 
 			<article>
 				<h4 id="before">before()</h4>
 				<p>
-					The before() method is used as a general pre-method prepping method, to execute code required in
-					every controller method called. This method will be executed <strong>before</strong> the method
-					from the URL is called on your controller. It will not be called if that method turns out not to exist.
-					You should not use this method for routing decisions. If you need that, use the <strong>router</strong> method instead.
+					before() 方法用来作为一个预方法, 用来每个控制器方法需要执行的代码. 这个方法将会在 URL 调用控制器方法方法 <strong>前</strong> 执行. 如果控制器方法不存在那么它也不会被调用.不应该使用该方法来进行路由决策. 你可以使用<strong>router</strong>方法替代.
 				</p>
 			</article>
 
 			<article>
 				<h4 id="after">after($response)</h4>
 				<p>
-					This method will be executed <strong>after</strong> the method from the URL was called successfully,
-					this will not be called if the method turns out not to exist. <a href="#response"><var>$response</var></a> parameter is required.
-					The after() method <strong>MUST</strong> return a Response object.
+					这个方法将在 URL 请求方法成功 <strong>后</strong> 执行,
+					如果调用方法不存在那么该方法也不会执行. <a href="#response"><var>$response</var></a> 参数是必须的.
+					 after() 方法 <strong>必须</strong> 返回输出（Response）对象.
 				</p>
 			</article>
 
 			<article>
 				<h4 id="router">router($method, $params)</h4>
 				<p>
-					This method will take over the internal routing of the controller. Once the controller is loaded,
-					the router() method will be called and use the <var>$method</var> that is being passed in, instead
-					of the default method. It will also pass in <var>$params</var>, in an array, to that
-					<var>$method</var>. The before() and after() methods will still work as expected.
+					该方法将处理控制器内部路由. 一旦控制器载入,
+					router() 方法将会传递 <var>$method</var> 参数调用, 代替默认的方法. 也会将参数通过数组传递 <var>$params</var>, 给该
+					<var>$method</var>. before() and after() 方法依然有效.
 				</p>
 			</article>
 
-			<h3 id="extending_other_controllers">Extending other controllers</h3>
+			<h3 id="extending_other_controllers">扩展其他控制器</h3>
 
 			<p>
-				Thanks to the autoloader, you can extend other controllers without writing anything more than its
-				name in the class definition:
+				多亏自动加载（autoloader）, 除了类定义外你不需要做其他工作:
 			</p>
 
 			<pre class="php"><code>class Controller_Example extends Controller_Welcome
@@ -240,16 +221,14 @@ class Example extends Controller
 }</code></pre>
 
 			<p>
-				This may sound strange at first, but extending controllers allows you to share methods and create base
-				controllers really easily.
+				起初听起来有些奇怪, 但是继承控制器允许你共用方法以及创建基本控制器相当简单.
 			</p>
 
-			<h3>Creating Base Controllers</h3>
+			<h3>创建基本控制器</h3>
 
 			<p>
-				A base controller is a shared controller, like <kbd>Controller_Public</kbd> or <kbd>Controller_Admin</kbd> and are used to share logic between groups of controllers.
-				For example, the <kbd>Controller_Admin</kbd> controller could contain your login/logout actions and maybe a dashboard, but it could also contain a <kbd>before()</kbd> method
-				that checks to see if the user is logged in as an admin. Then all other controllers in your admin panel will extend this and automatically be secured.
+				一个基本控制器是用来分享的控制器, 比如 <kbd>Controller_Public</kbd> 或者 <kbd>Controller_Admin</kbd> 在组控制器间分享逻辑.
+				例如, the <kbd>Controller_Admin</kbd> 控制器可以包含 login/logout 行为或者是 dashboard, 你也可以包含 <kbd>before()</kbd> 方法来检查用户是否作为管理员都呢个路. 那么所有其他继承了该控制器的控制都会可靠的自动加载.
 			</p>
 
 			<pre class="php"><code>class Controller_Admin extends Controller
@@ -274,8 +253,7 @@ class Example extends Controller
 }</code></pre>
 
 			<p>
-				That code will go in <kbd>fuel/app/classes/controller/admin.php</kbd> and all of your other controllers
-				should go in <kbd>fuel/app/classes/controller/admin/</kbd>, like this one:
+				该代码存放在 <kbd>fuel/app/classes/controller/admin.php</kbd> 那么你所有的控制器应当放在 <kbd>fuel/app/classes/controller/admin/</kbd>, 就好像这样:
 			</p>
 
 			<pre class="php"><code>class Controller_Admin_User extends Controller_Admin

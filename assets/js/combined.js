@@ -369,12 +369,12 @@ panes.main = {
 		"模型-视图-控制器":	"general/mvc.html",
 		"模型":			"general/models.html",
 		"视图":			"general/views.html",
-		"ViewModels":		"general/viewmodels.html",
-		"Controllers": {
-			"Base" :		"general/controllers/base.html",
-			"Template":		"general/controllers/template.html",
+		"视图模型":		"general/viewmodels.html",
+		"控制器": {
+			"基础" :		"general/controllers/base.html",
+			"模板":		"general/controllers/template.html",
 			"Rest":			"general/controllers/rest.html",
-			"Hybrid":		"general/controllers/hybrid.html"
+			"混合":		"general/controllers/hybrid.html"
 		},
 		"Routing":			"general/routing.html",
 		"Security":			"general/security.html",

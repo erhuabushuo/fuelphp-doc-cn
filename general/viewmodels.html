@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>ViewModels - General - FuelPHP Documentation</title>
+	<title>视图模型 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,25 +45,22 @@
 		<div id="main">
 
 			<article>
-				<h2>ViewModels</h2>
+				<h2>视图模型</h2>
 
-				<p>ViewModels are optional. If you don't need them, you can use <a href="views.html">Views</a>.</p>
+				<p>视图模型是可选的. 你不要她的话, 你可以使用 <a href="views.html">视图</a>.</p>
 
-				<h3 id="what_is_a_viewmodel">What is a ViewModel?</h3>
+				<h3 id="what_is_a_viewmodel">什么是视图模型?</h3>
 
-				<p>A ViewModel is a class that contains the logic that is needed to generate your views. When the controller
-				is done with your user input and is done with whatever actions it needed to take, it turns execution over to
-				the ViewModel to retrieve whatever data is needed for the view. A ViewModel shouldn't do any data manipulation
-				but can contain database calls and any other retrieval or preparation operations needed to generate the View's
-				data.</p>
+				<p>视图模型是包含逻辑生成视图的类. 当控制器已经处理了用户输入和行为, 将执行视图模型来检索需要的任何数据视图. 一个视图模型不能对数据进行任何操作，但是可以包含数据库查询和其他检索或者预操作来生成视图数据。
+				</p>
 
-				<h3 id="creating_viewmodels">Creating a ViewModel</h3>
+				<h3 id="creating_viewmodels">创建一个视图模型</h3>
 
-				<p>First we'll create an empty ViewModel in <code>app/classes/view/index.php</code>:</p>
+				<p>首先我们将在 <code>app/classes/view/index.php</code> 创建一个空视图模型:</p>
 
 				<pre><code>class View_Index extends ViewModel {}</code></pre>
 
-				<p>Then you create the view to which this belongs in <code>app/views/index.php</code>:</p>
+				<p>然后在 <code>app/views/index.php</code> 创建视图:</p>
 
 				<pre><code>&lt;h1&gt;&lt;?php echo $title; ?&gt;&lt;/h1&gt;
 
@@ -76,21 +73,17 @@
 ?&gt;
 &lt;/ul&gt;</code></pre>
 
-				<p class="note"><strong>On view names</strong><br />
-				A ViewModel and its view are expected to share the same name. Thus a
-				ViewModel <code>View_Index</code> expects the view to be in <code>app/views/index.php</code>. And underscores
-				work here the same as with classes, which means that the view for <code>View_Some_Thing</code> is expected
-				to be in <code>app/views/some/thing.php</code>.<br />
-				This default can be overwritten by setting a non-static <code>$_view</code> property in your ViewModel with the
-				View name (without .php suffix).</p>
+				<p class="note"><strong>关于视图名字</strong><br />
+				视图模型和视图被期望用相同名字. 例如
+				ViewModel <code>View_Index</code> expects the view to be in <code>app/views/index.php</code>. 下划线和类是一样处理, 也就意味着如果是 <code>View_Some_Thing</code> 被期望于在 <code>app/views/some/thing.php</code> 文件.<br />
+				这个默认设置可以通过覆盖静态模型非静态变量 <code>$_view</code> 属性 使用视图名字 (不需要 .php 后缀).</p>
 
-				<p>And last we'll call the ViewModel from the controller:</p>
+				<p>最后我就可以在控制器中调用视图模型:</p>
 
 				<pre><code>ViewModel::forge('index');</code></pre>
 
-				<p>Now we have everything setup; however, there is still no data passed to the view. It still needs to get a
-				<code>$title</code> string and <code>$articles</code> array passed to it. We do this by adding a <code>view()</code> method
-				to the ViewModel which will assign this data:</p>
+				<p>现在我已经做好了所有配置工作; 然而, 仍然没有数据传递给视图. 还需要传递
+				<code>$title</code> 字符串和 <code>$articles</code> 数组. 我们通过添加 <code>view()</code> 方法于 ViewModel 来赋值这些数据:</p>
 
 				<pre><code>class View_Index extends ViewModel
 {
@@ -103,11 +96,11 @@
 	}
 }</code></pre>
 
-				<p>And you're done.</p>
+				<p>现在就完成了.</p>
 
-				<h3 id="functions">Passing functions to views</h3>
+				<h3 id="functions">向视图传递参数</h3>
 
-				<p>To pass a View specific function from your ViewModel to your View, you use <a href="http://www.php.net/manual/functions.anonymous.php">Closures</a>:</p>
+				<p>要从视图模型传递自定义函数给你视图, 你可以使用 <a href="http://www.php.net/manual/functions.anonymous.php">闭包</a>:</p>
 
 				<pre class="php"><code>// In the ViewModel
 class View_Index extends ViewModel
@@ -124,45 +117,39 @@ $echo_upper('this string'); // Outputs: "THIS STRING"</code></pre>
 			</article>
 
 			<article>
-				<h3 id="security">Security</h3>
+				<h3 id="security">安全</h3>
 
-				<p>It works the same as with View. This means that anything set on the ViewModel will be output encoded as
-					long as you don't switch that off. You can use the same <code>set($name, $value, $encode)</code> method
-					on the ViewModel as you'd use on the View directly. More on this in the
-					<a href="views.html#security">Security section of View</a>.</p>
+				<p>和视图工作一样，也就是说如果不明确关闭那么所有的数据输出都将编码. 你可以使用和视同一样的 <code>set($name, $value, $encode)</code> 方法将数据输出到视图中. 关于更多详情
+					<a href="views.html#security">视图安全部分</a>.</p>
 			</article>
 
 			<article>
-				<h3 id="advanced">Advanced usage</h3>
+				<h3 id="advanced">高级用例</h3>
 
-				<h4 id="more_methods">More methods</h4>
+				<h4 id="more_methods">更多方法</h4>
 
-				<p>If there are different ways of parsing the same View, you can add multiple methods to the ViewModel other
-				than the default <code>view()</code> method. To use those, you need to add the method's name as the second parameter to the
-				<code>ViewModel::forge()</code> method:</p>
+				<p>如果要使用不同方法传递数据, 你可以添加除 <code>view()</code> 外多个方法. 要使用其方法，你要将方法名传递给
+				<code>ViewModel::forge()</code> 方法的第二个参数:</p>
 
 				<pre><code>// will call other_method() upon the ViewModel from the above example
 ViewModel::forge('index', 'other_method');</code></pre>
 
-				<h4 id="before_after">Before and after methods</h4>
+				<h4 id="before_after">方法调用前后</h4>
 
-				<p>If you need to have some data added for all the methods in the ViewModel, you can add a <code>before()</code>
-				or <code>after()</code> method just like you can with Controllers.</p>
+				<p>如果你需要为视图模型所有方法添加一些数据, 你可以使用一个 <code>before()</code>
+				或者 <code>after()</code> 方法就和在控制器使用这两个方法一样.</p>
 
-				<h4 id="changing_view">Changing the view</h4>
+				<h4 id="changing_view">改变视图</h4>
 
-				<p>By default, the <code>$this->_view</code> gets a View object assigned to it. You can replace this object by
-				making your own <code>set_view()</code> method in the ViewModel and setting the <code>$this->_view</code> to
-				an object of your choosing.<br />
-				However, this object must allow you to set properties on it (which are used as the template data) and must have
-				a <code>__toString()</code> magic method that will render and return the parsed contents.<br />
-				The name of the expected view is available in the <code>$this->_view</code> property.</p>
+				<p>默认, 属性 <code>$this->_view</code> 赋予一个视图对象. 你可以在通过建议 <code>set_view()</code> 方法中来设置 <code>$this->_view</code> 你所需对象.<br />
+				然后, 然而这个对象必须允许向其设置属性 (作为模板数据) 而且还拥有<code>__toString()</code> 魔术方法来呈现以及返回解析内容.<br />
+				预期视图存于 <code>$this->_view</code> 属性.</p>
 
-				<h4>Using ViewModels from other namespaces or not View_ prefixed</h4>
+				<h4>通过其他命名空间使用视图模型或者不用 View_ 前缀</h4>
 
-				<p>If you want to use these, you have to use the full classname with the <code>forge()</code>, including the namespace.
-				In these cases, the default naming will often not work as expected so setting the <code>$_view</code>
-				property is encouraged.</p>
+				<p>你果你想这么做, 你需要在 <code>forge()</code> 使用完整类名, 包括命名空间.
+				在这种情况下, 默认预期命令将无效，所以设置 <code>$_view</code>
+				属性是必要的.</p>
 			</article>
 
 		</div>
