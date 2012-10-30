@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Rest Controller - General - FuelPHP Documentation</title>
+	<title>Rest 控制器 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,27 +44,26 @@
 
 		<div id="main">
 
-			<h2 id="rest_controller">Rest Controller</h2>
+			<h2 id="rest_controller">Rest 控制器</h2>
 
-			<h3 id="what_is_rest">What is a Rest controller?</h3>
+			<h3 id="what_is_rest">什么是 Rest 控制器?</h3>
 
 			<p>
-				A Rest Controller is an extension of the Base Controller which has RESTful support built in.
-				This will allow you to build API's with ease.
+				Rest 控制器是基本控制器内建支持 RESTful 扩展.
+				它使建立 API 相当简单.
 			</p>
 
 			<p class="note">
-				<strong>Please note:</strong> if you have a <kbd>before()</kbd> or <kbd>router</kbd> method in
-				your REST controller extension you <strong>must</strong> call the parent method
-				<kbd>parent::before()</kbd> (or router) for it to keep working properly.
+				<strong>注意:</strong> 如果在你建立的 REST 控制器内含有 <kbd>before()</kbd> 或者 <kbd>router</kbd> 方法，那么你 <strong>必须</strong> 调用父类方法
+				<kbd>parent::before()</kbd> (或者 router) 以致保持有效.
 			</p>
 
-			<h3 id="usage">Using the Rest controller</h3>
+			<h3 id="usage">使用 Rest 控制器</h3>
 
 			<p>
-				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-				They need to extend the <kbd>Controller_Rest</kbd> class and are prefixed by default by "Controller_".
-				Below is an example of the controller "test":
+				类似其他控制器, 你创建的类放置在 <kbd>fuel/app/classes/controller</kbd> 目录下.
+				它们需要继承 <kbd>Controller_Rest</kbd> 类 以及使用 "Controller_" 默认作为前缀.
+				以下是一个 "test" 控制器示例:
 			</p>
 
 			<pre class="php"><code>class Controller_Test extends Controller_Rest
@@ -82,14 +81,14 @@
 	}
 }</code></pre>
 
-			<p>This controller method "list" is called by the following URL:</p>
+			<p>控制器芳芳 "list" 使用以下 URL 访问:</p>
 
 			<pre>http://localhost/test/list.json?foo=bar</pre>
 
 			<p>
-				You'll notice that instead of the usual "action_" prefix the Rest Controller uses the HTTP method as a prefix.
-				When no function the corresponding HTTP method prefix is found it will fall back to the "action_" prefix.
-				The HTTP methods that Rest Controller supports are the following:
+				你可以注意到 "action_" 前缀在 Rest 控制器中替换为 HTTP 方法.
+				如果没有找到正确 HTTP 方法前缀，那么将尝试查找 "action_" 前缀方法.
+				Rest 控制器支持如下 HTTP 方法:
 			</p>
 
 			<table class="config">
@@ -101,35 +100,32 @@
 					<tr>
 						<th>GET</th>
 						<td>
-							Used to fetch information about an existing resource. This is used by browsers when you
-							enter a URL and hit go, or when you click on a link, so it perfect for fetching information
-							on one of your REST resources (like user).
+							存在资源中获取数据. 通常使用浏览器输入 URL 访问, 或者点击一个链接, 非常适合用来获取
+							  REST 资源信息 (例如 user).
 						</td>
 					</tr>
 					<tr>
 						<th>POST</th>
 						<td>
-							Used to update an existing resource with information. Browsers use this to submit most
-							types of forms on the Internet, although some use GET as well by submitting the form action
-							with a query string containing the field data.
+							用来更新已存在资源数据. 大多数表单使用这种方法来提交数据, 尽管有时使用 GET 伴随查询参数也可以提交.
 						</td>
 					</tr>
 					<tr>
 						<th>PUT</th>
 						<td>
-							Less commonly used and not supported by most browsers, PUT is used to create a new resource.
+							极少使用，也没有被大多浏览器支持, PUT 用来创建一个新资源.
 						</td>
 					</tr>
 					<tr>
 						<th>DELETE</th>
 						<td>
-							Also not used by many browsers, this HTTP verb rather obviously is used to delete a resource.
+							也不被大多数浏览器支持, 这个 HTTP 动作显然是用来删除一个资源.
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<h3 id="output">Output</h3>
+			<h3 id="output">输出</h3>
 
 			<pre class="javascript"><code>{
 	"foo":"bar",
@@ -138,40 +134,38 @@
 }</code></pre>
 
 			<p>
-				This is output as json because a file extension was defined in the URL. By default, responses will be
-				formatted as XML or whichever format is set in <em>fuel/core/config/rest.php</em>.
+				当前是使用 json 格式，通过 URL 文件扩展名定义 . 默认, 输出当使用 XML 格式 或者是 <em>fuel/core/config/rest.php</em> 设置的格式.
 			</p>
 
-			<h3 id="formats">Supported Formats</h3>
+			<h3 id="formats">支持格式</h3>
 
 			<ul>
-				<li><strong>xml</strong> - almost any programming language can read XML</li>
-				<li><strong>json</strong> - useful for JavaScript and increasingly PHP apps.</li>
-				<li><strong>csv</strong> - open with spreadsheet programs</li>
-				<li><strong>html</strong> - a simple HTML table</li>
-				<li><strong>php</strong> - Representation of PHP code that can be <kbd>eval()</kbd>'ed</li>
-				<li><strong>serialize</strong> - Serialized data that can be unserialized in PHP</li>
+				<li><strong>xml</strong> - 大多数编程语言可以读取 XML</li>
+				<li><strong>json</strong> -  JavaScript 和  PHP 较常使用.</li>
+				<li><strong>csv</strong> - 电子表格软件可打开</li>
+				<li><strong>html</strong> - 简单的 HTML 表格</li>
+				<li><strong>php</strong> - 输出 PHP 代码， 可以通过  <kbd>eval()</kbd>解析</li>
+				<li><strong>serialize</strong> - 可在PHP反序列化的序列化数据</li>
 			</ul>
 
-			<h3 id="format_determination">Format determination</h3>
+			<h3 id="format_determination">格式判定</h3>
 
 			<p>
-				To determine the format in which the result should be returned, the REST controller uses the following algorithm:
+				如果决定输出格式,  REST 控制器使用如下规则:
 			</p>
 			<ul>
-				<li>use the protected property <kbd>$format</kbd> if it contains a supported format</li>
-				<li>use the URL extension if it is a supported format</li>
-				<li>use the format specified by the <kbd>:format</kbd> variable in the route if it contains a supported format</li>
-				<li>use the default value defined by the <kbd>$rest_format</kbd> property of your class</li>
+				<li>使用 protected 属性 <kbd>$format</kbd></li>
+				<li>使用 URL 扩展名</li>
+				<li>使用路由<kbd>:format</kbd> 变量</li>
+				<li>使用类属性<kbd>$rest_format</kbd>默认值</li>
 			</ul>
 
-			<h3 id="special_methods">Special controller methods</h3>
+			<h3 id="special_methods">特别控制器方法</h3>
 
 			<article>
 				<h4 id="response">response($data = array(), $http_code = 200)</h4>
 				<p>
-					This method is used to send your response data through the formatting and output logic. You can
-					optionally set a status code as the 2nd parameter.
+					该方法用类格式化输出数据. 你可以通过可选的第二参数返回状态码.
 				</p>
 			</article>
 
