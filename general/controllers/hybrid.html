@@ -10,7 +10,7 @@
 		var path = './../../';
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Hybrid Controller - General - FuelPHP Documentation</title>
+	<title>混合控制器 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,21 +44,20 @@
 
 		<div id="main">
 
-			<h2 id="hybrid_controller">Hybrid Controller</h2>
+			<h2 id="hybrid_controller">混合控制器</h2>
 
 			<p>
-				The hybrid controller brings together the functionality of both the REST controller and the
-				Template controller in a single base controller.
+				混合控制器使一个简单的基本控制器具有 REST 控制器和模板控制器功能.
 			</p>
 
 			<p class="note">
-				For more information about the Template or Rest functionality, see the <a href="./rest.html">Controller_Rest</a> or <a href="./template.html">Controller_Template</a> pages.
+				更多关于模板和 Rest 控制器介绍 <a href="./rest.html">Controller_Rest</a> 或者 <a href="./template.html">Controller_Template</a> pages.
 			</p>
 
 			<p>
-				Like all Controllers, you create a class in the <kbd>fuel/app/classes/controller</kbd> directory.
-				They need to extend the <kbd>Controller_Hybrid</kbd> class and are prefixed by default by "Controller_".
-				Below is an example of the controller "test":
+				和其他控制器类一样, 该类也放置在 <kbd>fuel/app/classes/controller</kbd> 目录.
+				它们需要继承 <kbd>Controller_Hybrid</kbd> 类以及使用 "Controller_" 作为默认前缀.
+				以下是 "test" 控制器示例:
 			</p>
 
 			<pre class="php"><code>class Controller_Test extends Controller_Hybrid
