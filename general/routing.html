@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Routing - General - FuelPHP Documentation</title>
+	<title>路由 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,20 +44,21 @@
 
 		<div id="main">
 
-			<h2>Routing</h2>
+			<h2>路由</h2>
+			
+			<p>Fuel 的路由可以从简单的静态路由延伸为使用 HTTP 动作的高级路由</p>
 
-			<p>Fuel's routing can range from simple static routes to advanced routes using HTTP verb based routing.</p>
+		
 
-			<p>Routes are set in <kbd>fuel/app/config/routes.php</kbd>.</p>
+			<p>路由设置在 <kbd>fuel/app/config/routes.php</kbd> 文件.</p>
 
-			<h3 id="reserved">Reserved Routes</h3>
+			<h3 id="reserved">保留路由</h3>
 
-			<p>In Fuel there are 2 reserved routes.	 They are <kbd>_root_</kbd> and <kbd>_404_</kbd>.</p>
+			<p>在 Fuel 里有两个保留路由. 它们是 <kbd>_root_</kbd> 和 <kbd>_404_</kbd>.</p>
 
 			<ul>
-				<li><kbd>_root_</kbd> - The default route when no URI is specified.</li>
-				<li><kbd>_404_</kbd> - The route used when no controller or action can be found. Can also be used as a
-					catch-all route.</li>
+				<li><kbd>_root_</kbd> - 当未定义 URI 时默认路由.</li>
+				<li><kbd>_404_</kbd> - 当未能找到控制器或行为时使用的路由.也能作为捕获所有路由.</li>
 			</ul>
 
 			<pre class="php"><code>return array(
@@ -65,11 +66,11 @@
     '_404_'   => 'welcome/404',
 );</code></pre>
 
-			<h3 id="basics">Basic Routing</h3>
+			<h3 id="basics">基本路由</h3>
 
-			<p>The route on the left is compared to the request URI.  If a match is found, the request is routed to the URI on the right.</p>
+			<p>路由左边部分是对比请求 URI.  如果匹配成功, 请求会被路由右侧 URI.</p>
 
-			<p>This allows you to do things like the following:</p>
+			<p>如下范例:</p>
 
 			<pre class="php"><code>return array(
     'about'   => 'site/about',
@@ -78,22 +79,19 @@
 );</code></pre>
 
 
-			<h3 id="slightly_advanced">Slightly Advanced Routing</h3>
+			<h3 id="slightly_advanced">较高级路由</h3>
 
-			<p>You can include any regex into your routes.	The left side is matched against the
-			requests URI, and the right side is the replacement for the left, so you can use
-			backreferences in the right side from the regex on the left.  There are also a few
-			special statements that allow you match anything or just a segment:</p>
+			<p>可以在路由中包含任意正则表达式.左边部分匹配请求URI, 右侧部分是左侧的替代, 所以你可以使用反向引用来替换左边正则部分，还提供了一些特殊语句以及片段（segment）:</p>
 
 			<ul>
-				<li><kbd>:any</kbd> - This matches anything from that point on in the URI</li>
-				<li><kbd>:segment</kbd> - This matches only 1 segment in the URI, but that segment can be anything</li>
-				<li><kbd>:num</kbd> - This matches any numbers</li>
-				<li><kbd>:alpha</kbd> - This matches any alpha characters, including UTF-8</li>
-				<li><kbd>:alnum</kbd> - This matches any alphanumeric characters, including UTF-8</li>
+				<li><kbd>:any</kbd> - 在URI此处匹配任何东西</li>
+				<li><kbd>:segment</kbd> -  在URI中此只匹配一个片段, 但此片段可以是任何东西</li>
+				<li><kbd>:num</kbd> - 匹配任何数字</li>
+				<li><kbd>:alpha</kbd> - 匹配任何字母字符, 包括 UTF-8</li>
+				<li><kbd>:alnum</kbd> - 匹配任意字母和数字字符, 包括 UTF-8</li>
 			</ul>
 
-			<p>Here are some examples:</p>
+			<p>以下是一些示例:</p>
 
 			<pre class="php"><code>return array(
     'blog/(:any)'      => 'blog/entry/$1', // Routes /blog/entry_name to /blog/entry/entry_name
@@ -102,79 +100,74 @@
 );</code></pre>
 
 
-			<h3 id="advanced">Advanced Routing</h3>
+			<h3 id="advanced">高级路由</h3>
 
-			<p>You can also have named parameters in your routes.  This allows you to give your URI segments
-			names which can then be accessed from within your actions.</p>
+			<p>你也可以在路由中使用命名参数.  这将允许你给 URI 片段命名以便在行为方法内访问.</p>
 
-			<p>Example:</p>
+			<p>示例:</p>
 
 			<pre class="php"><code>return array(
     'blog/:year/:month/:id' => 'blog/entry', // Routes /blog/2010/11/entry_name to /blog/entry
 );</code></pre>
 
-			<p>In the above example it would catch the following <kbd>/blog/2010/11/entry_name</kbd>.  It would then
-			route that request to your 'entry' action in your 'blog' controller.  There, the named params
-			will be available like this:</p>
+			<p>上面例子将捕获 <kbd>/blog/2010/11/entry_name</kbd> 地址.  它将路由请求至'blog'控制器中 'entry'方法. 此示例, 命名参数可以如下使用:</p>
 
 			<pre class="php"><code>$this->param('year');
 $this->param('month');
 $this->param('id');</code></pre>
 
 			<p class="note">
-				Note that as a named parameter is a regex, every named parameter counts as a backreference.
-				So in a route like ':name/(\d{2})', the backreference for your two-digit segment is $2, not $1!</p>
+				注意：命名参数是正则表达式, 所有命名参数使用反向引用读取.
+				所有在一个路由中 ':name/(\d{2})', 两位整数片段引用是 $2, 不是 $1!</p>
 
 
-			<h3 id="http_verb">HTTP verb based routing</h3>
+			<h3 id="http_verb">基于HTTP动作路由</h3>
 
-			<p>You can route your URLs to controllers and actions based on the HTTP verb used to call them.
-			This makes it quick and easy to make RESTful controllers.</p>
+			<p>你可以使用基于 HTTP 动作来调用控制器和行为.
+			这让创建 RESTful 控制器相当快速简单.</p>
 
-			<p>Example:</p>
+			<p>示例:</p>
 
 			<pre class="php"><code>return array(
     // Routes GET /blog to /blog/all and POST /blog to /blog/create
     'blog' => array(array('GET', new Route('blog/all')), array('POST', new Route('blog/create'))),
 );</code></pre>
 
-			<p>You can use named parameters and regexes within your URL just like normal:</p>
+			<p>你也可以在 URL 内使用命名参数和正则表达式:</p>
 
 	        <pre class="php"><code>return array(
     'blog/(:any)' => array(array('GET', new Route('blog/show/$1'))),
 );</code></pre>
 
-			<h3 id="named_routes">Named routes and reverse routing</h3>
+			<h3 id="named_routes">命名路由以及反向路由</h3>
 
-			<p>The idea of reversed routing is like this: say you got an admin area and you have a route setup for it.
-			In your views, you would like to that admin area using an HTML anchor that links to for example 'admin/start/overview'.
-			Now you decide to move stuff around and end up moving that specific page to 'admin/overview'.
-			As a result of this you now you need to update the links in all your views...</p>
+			<p>反向路由想法是: 假设你有一个管理功能以及为它设置了个路由.
+			在视图中, 你想使用 HTML 锚链接至 'admin/start/overview'.
+			现在你决定将链接改为 'admin/overview'.
+			这将导致你需要更改你所有视图中的链接地址...</p>
 
-			<p>When using reverse routing with these name routes you can link an anchor to a named route, so that when the route changes,
-			the links in your views will automatically follow the change</p>
+			<p>当使用反向路由时，你可以使用锚指向命名路由, 所以当改变路由时,
+			视图中的链接也跟着改变</p>
 
-			<p>Example route:</p>
+			<p>路由示例:</p>
 
 			<pre class="php"><code>return array(
     'admin/start/overview' => array('admin/overview', 'name' => 'admin_overview'), // add a named route for the admin/overview page
 );</code></pre>
 
-			<p>Example anchor:</p>
+			<p>示例锚:</p>
 
 			<pre class="php"><code>// produces &lt;a href="http://your_base_url/admin/start/overview"&gt;Overview&lt;/a&gt;
 echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 			<p class="note">
-				Note that this currently only works for routes that are defined in <kbd>app/config/routes.php</kbd>, not for module routes.
+				注意：只为在路由文件 <kbd>app/config/routes.php</kbd> 里定义路由有效, 对模块无效.
 			</p>
 
-			<h3 id="inline_routes">Inline routes</h3>
+			<h3 id="inline_routes">内联路由</h3>
 
 			<p>
-				A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure
-				that replaces the controller method. Like controller methods, inline routes MUST return a Response object, either by forging
-				one manually, or as the result of executing a forged Request.
+				路由不但可以路由至方法. FuelPHP 也支持内敛路由, 可以定义为闭包替代控制器方法. 和控制器方法一样, 内联路由必须返回 Response 对象, 手动创建, 或者执行Request对象创建.
 			</p>
 
 			<p>Example route:</p>
@@ -192,9 +185,9 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 		}
 };</code></pre>
 
-			<h3 id="module_routing">Modules &amp; Routing</h3>
+			<h3 id="module_routing">模块 &amp; 路由</h3>
 
-			<p><a href="modules.html#module_routing">Read about how modules handle routing</a>.</p>
+			<p><a href="modules.html#module_routing">了解模块处理路由</a>.</p>
 
 		</div>
 

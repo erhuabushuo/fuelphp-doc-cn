@@ -376,7 +376,7 @@ panes.main = {
 			"Rest":			"general/controllers/rest.html",
 			"混合":		"general/controllers/hybrid.html"
 		},
-		"Routing":			"general/routing.html",
+		"路由":			"general/routing.html",
 		"Security":			"general/security.html",
 		"Modules":			"general/modules.html",
 		"Packages":			"general/packages.html",
