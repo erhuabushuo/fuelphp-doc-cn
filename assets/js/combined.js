@@ -377,7 +377,7 @@ panes.main = {
 			"混合":		"general/controllers/hybrid.html"
 		},
 		"路由":			"general/routing.html",
-		"Security":			"general/security.html",
+		"安全":			"general/security.html",
 		"Modules":			"general/modules.html",
 		"Packages":			"general/packages.html",
 		"HMVC Requests":	"general/hmvc.html",

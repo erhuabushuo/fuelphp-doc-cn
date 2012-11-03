@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Security - General - FuelPHP Documentation</title>
+	<title>安全 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,83 +44,72 @@
 
 		<div id="main">
 
-			<h2>Security</h2>
+			<h2>安全</h2>
 
 			<p>
-				Fuel takes security very serious, and as a result, has implemented the following measures to ensure the safety of your web applications:
+				Fuel 在安全方面非常严谨, 通过以下方法来确保你的web应用程序安全:
 			</p>
 
 			<ul>
-				<li><a href="#output">Output encoding</a></li>
-				<li><a href="#csrf">CSRF protection</a></li>
-				<li><a href="#xss">XSS filtering</a></li>
-				<li><a href="#input">Input filtering</a></li>
-				<li><a href="#sql">SQL injection</a></li>
+				<li><a href="#output">输出编码</a></li>
+				<li><a href="#csrf">CSRF 保护</a></li>
+				<li><a href="#xss">XSS 过滤</a></li>
+				<li><a href="#input">Input 过滤</a></li>
+				<li><a href="#sql">SQL 注入</a></li>
 			</ul>
 			<p>
-				By default, Fuel doesn't filter POST and GET variables on input, and encodes everything on output.
-				Fuel also encodes the URI to prevent nasty surprises when using URI segments, and escapes everything going into the database.
+				默认, Fuel 不过滤 POST 以及 GET 输入变量, 但是对所有输出编码.
+				Fuel 也对 URI 编码放置 URI 片段中的恶意数据, 对所有数据库插入进行转义.
 			</p>
 			<p>
-				This page explains the general security measures Fuel offers, the <a href="../classes/security.html">Security
-				class</a> is documented under Classes. You will also find the details on configuring Fuels security class on that page.
+				本页主要介绍 Fuel 对安全提供的措施,  <a href="../classes/security.html">安全
+				类</a> 在类中有说明. 你可以在那查看更多关于 Fuel 安全类配置.
 			</p>
 
 			<article id="output">
-				<h3>Output encoding</h3>
+				<h3>输出编码</h3>
 
 				<p>
-					By default, Fuel favors output encoding to input filtering. The reason behind this is twofold.
-					No matter where your data originates, and whether or not it is filtered, output encoding will make it harmless
-					when it is send to the client. It also means all input is stored in raw and unaltered form, so that no matter
-					what happens, you will always have access to the original data.
+					默认, Fuel 使用输出编码而不对输入过滤. 两方面主要原因.
+					无论数据源自哪里, 是否进行过滤 ，输出过滤后发送给客户端是安全的. 也就是说所有来自表单接收的数据都是未经改变, 所以无论发生什么, 所以你访问的总是原始数据.
 				</p>
 				<p>
-					It also means you don't run into trouble when you need data in its unaltered form. One common example is the
-					data produced by html editors like TinyMCE or ckeditor, used in lots of application for enduser content editing.
-					In such cases you might want to run <a href="#xss">XSS Filtering</a> on these input variables to filter out
-					any nasty surprises that might have crept in, since this is a typical example of data you don't want
-					to encode on output either.
+					也就是说你不必担心使用原始表单数据. 典型的例子就是通过使用html编辑器（TinyMCE，ckeditor）生成html代码, 用来为用户编辑内容.
+					再这种情况下你也许想对这些变量使用 <a href="#xss">XSS 过滤</a> 来过滤垃圾数据, 这是很典型的你不想要的编码输出的数据.
 				</p>
 				<p>
-					Since output encoding can only happen on strings, you have to pay attention to objects you want to pass to your views.
-					Either make sure your object contains a <strong>__toString()</strong> method on which the encoding can take place, add your object class
-					to the class whitelist in the security configuration (don't forget the namespace!), or pass it to the view with the <strong>$encode</strong>
-					flag set to false.
-					You can also use the <a href="../classes/view.html#method_auto_encode">auto_encode</a> method to temporary disable automatic output encoding
-					on a per-view basis.
+					因为输出编码只能针对字符串类型, 当你要传递对象给视图时，你必须得注意.
+					确保对象编码时包含 <strong>__toString()</strong> 方法, 将不需要编码的对象放入安全配置白名单（whitelist） (别忘记命名空间!), 或者在传递给视图时将<strong>$encode</strong>
+					参数设置为false.
+					你也可以使用<a href="../classes/view.html#method_auto_encode">auto_encode</a> 方法来暂时禁用自动编码.
 				</p>
 				<p>
-					See the section on <a href="views.html#security">view security</a> to see how this is implemented for views.
+					查看 <a href="views.html#security">视图安全</a>部分是如何实现的.
 				</p>
 			</article>
 
 			<article id="csrf">
-				<h3>CSRF Protection</h3>
+				<h3>CSRF 保护</h3>
 				<p>
-					Cross-site request forgery, also known as a one-click attack or session riding and abbreviated as CSRF, is a type of malicious exploit
-					of a website whereby unauthorized commands are transmitted from a user that the website trusts. Unlike cross-site scripting (XSS),
-					which exploits the trust a user has for a particular site, CSRF exploits the trust that a site	has in a user's browser.
-					The attack works by including a link or script in a page that accesses a site to which the user is known (or is supposed) to have been
-					authenticated.
+					跨站请求伪造, 也被成为 one-click attack 和 session riding ，缩写为 CSRF, 是一种恶意攻击，通过从网站信任用户传输未经授权命令. 不同于跨站脚本攻击 (XSS),
+					她利用网站对特定用户信任, CSRF 是利用网站用户浏览器的信任.
+					攻击是通过对已经授权众所周知的页面包含一个链接或者是脚本.
 				</p>
 				<p>
-					For example, one user, Bob, might be browsing a chat forum where another user, Mallory, has posted a message.
-					Suppose that Mallory has crafted an HTML image element that references an action on Bob's bank's website (rather than for example an image file).
-					If Bob's bank keeps his authentication information in a cookie, and if the cookie hasn't expired, then the attempt by Bob's browser to
-					load the image will submit the withdrawal form with his cookie, thus authorizing a transaction without Bob's approval.
+					例如, 有个用户, Bob, 用另外一个用户访问聊天论坛, Mallory, 发送了个信息.
+					假定 Mallory 创建 HTML 图像元素 引用 Bob's 银行网站 (而不是图像文件).
+					如果 Bob's 银行使用 cookie 存放授权信息, 而且 cookie 还没有过期, 那么将企图尝试从 Bob's 使用他的 cookie 信息提款, 在 Bob's 没有批准的情况下.
 					<span style="float:right;font-style:italic;"><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">source: wikipedia</a></span>
 				</p>
 				<p>
-					Fuel provides you the tools to protect your forms against this kind of attacks, by including a security token in the form, which will
-					can be validated upon form submission, and will ensure that when validated, the form was submitted by the client that has requested the form.
+					Fuel 提供了防范这种攻击的工具, 通过使用 security token 在表单, 可以验证表单提交, 确保表单提交者是请求者是同一个人.
 				</p>
 				<p>
-					CSRF protection can be configured through the security section in the applications config/config.php file.
+					CSRF 保护可以通过配置文件 config/config.php 的 安全（security）选项配置.
 				</p>
 
 
-				<p>To enable CRSF protection, start by adding the token to your form:</p>
+				<p>要开启 CRSF 保护, 在表单添加 token:</p>
 				<pre class="php"><code>// in plain HTML
 &lt;input type="hidden" name="&lt;?php echo \Config::get('security.csrf_token_key');?&gt;" value="&lt;?php echo \Security::fetch_token();?&gt;" /&gt;
 
@@ -131,7 +120,7 @@ echo \Form::hidden(\Config::get('security.csrf_token_key'), \Security::fetch_tok
 $form = \Form::forge();
 $form->add_csrf();
 </code></pre>
-			<p>To manually check if the form has been submitted by the client that requested the form:</p>
+			<p>手动简单表单是否是请求者发送:</p>
 		<pre class="php"><code>// check if a form was submitted
 if ($_POST)
 {
@@ -150,31 +139,29 @@ if ($_POST)
 			</article>
 
 			<article id="xss">
-				<h3>XSS filtering</h3>
+				<h3>XSS 过滤</h3>
 				<p>
-					Fuel provides XSS filtering using the <a href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/">HTMLawed</a> library,
-					a very fast and highly configurable library. By default it runs in safe and balanced mode.
+					Fuel 提供 XSS 过滤 使用 <a href="http://www.bioinformatics.org/phplabware/internal_utilities/htmLawed/">HTMLawed</a> 库,
+					非常快以及也配置库. 默认运行为安全和均衡模式.
 				</p>
 				<p>
-					Safe refers to HTML that is restricted to reduce the vulnerability for scripting attacks (such as XSS) based on HTML code which
-					otherwise may still be legal and compliant with the HTML standard specs. When elements such as script and object, and attributes
-					such as onmouseover and style are allowed in the input text, an input writer can introduce malevolent HTML code.
+					安全是清除基于HTML代码脚本攻击(例如 XSS) ，否则视为符合标准的HTML. 例如脚本,对象，属性，
+					例如 onmouseover 以及允许输入文本, 输入者可以提供恶意的 HTML 代码.
 				</p>
 				<p>
-					In balanced mode, HTMLawed checks and corrects the input to have properly balanced tags and legal element content
-					(i.e., any element nesting should be valid, and plain text may be present only in the content of elements that allow them).
+					在均衡模式, HTMLawed 检查并改正输入为无害的标签内容
+					(例如,所有的嵌套内容都进行验证，纯文本只允许存在允许的内容).
 				</p>
 				<p class="note">
-					For performance reasons, it is recommended that you use the <a href="../classes/security.html#method_xss_clean">xss_clean</a> method
-					on individual input values, rather than as a generic input filter.
+					因性能原因, 我们推荐你使用 <a href="../classes/security.html#method_xss_clean">xss_clean</a> 方法来对单个的输入值, 而不是通用过滤器.
 				</p>
 			</article>
 
 			<article id="input">
-				<h3>Input filtering</h3>
+				<h3>输入过滤</h3>
 				<p>
-					Although not enabled by default, you can configure Fuel to filter all input ($_GET, $_POST and $_COOKIE) on every page request.
-					To do so, configure the functions or methods to be used to filter them in the application's config/config.php file.
+					虽然默认没有开启, 你可以使用它来过滤所有的输入 ($_GET, $_POST and $_COOKIE) 在每个页面请求中.
+					要开启, 在 config/config.php 文件配置过滤函数或方法.
 				</p>
 				<pre class="php"><code>/**
  * Security settings
@@ -183,29 +170,22 @@ if ($_POST)
     'input_filter' => array(),
 )</code></pre>
 				<p>
-					Anything that is callable in PHP and accepts a single value as parameter can be used for filtering purposes.
-					This includes PHP functions like 'htmlentities', static class methods like '\\Security::xss_clean' or even object methods
-					which are defined as <strong>array($object, 'method')</strong>. If you use an object method, make sure the object is available
-					before Fuel is initialized, as input filtering happens very early in the request process.
+					所有方法应该是可以在 PHP调用, 并且可以接受一个值作为过滤的目的.
+					包括可以是 PHP 函数，例如 'htmlentities', 类静态方法，例如 '\\Security::xss_clean' 甚至是对象方法，如 <strong>array($object, 'method')</strong>. 如果是对象方法请确保在Fuel初始化时该对象有效, 因为输入过滤在请求过程中是非常早的.
 				</p>
 			</article>
 
 			<article id="sql">
-				<h3>SQL injection</h3>
+				<h3>SQL 注入</h3>
 				<p>
-					SQL injection is a code injection technique that exploits a security vulnerability occurring in the database layer of an application
-					(like queries). The vulnerability is present when user input is either incorrectly filtered for string literal escape characters
-					embedded in SQL statements or user input is not strongly typed and thereby unexpectedly executed.
-					It is an instance of a more general class of vulnerabilities that can occur whenever one programming or scripting language is embedded
-					inside another. SQL injection attacks are also known as SQL insertion attacks.
+					SQL攻击（SQL injection，台湾称作SQL资料隐码攻击），简称注入攻击，是发生于应用程序之数据库层的安全漏洞。简而言之，是在输入的字符串之中注入SQL指令，在设计不良的程序当中忽略了检查，那么这些注入进去的指令就会被数据库服务器误认为是正常的SQL指令而运行，因此遭到破坏
 					<br />
-					This form of SQL injection occurs when user input is not filtered for escape characters and is then passed into an SQL statement.
-					This results in the potential manipulation of the statements performed on the database by the end-user of the application.
+	这种SQL注入形式一般产生于当用户输入没有过滤，或未转义字符串然后传递给SQL语句，这样就潜在用户操作数据库执行的语句
+		.
 					<span style="float:right;font-style:italic;"><a href="http://en.wikipedia.org/wiki/SQL_injection">source: wikipedia</a></span>
 				</p>
 				<p>
-					Fuel protects against SQL injection by escaping all values passed to one of the Database class methods. Since this happens at the level
-					of Fuel's central Query Builder, all code that uses the Query Builder, including Fuel's ORM package, will automatically use escaping.
+					Fuel 避免SQL注入通过在所有的数据库类方法中,对所有传入的值都进行转义. 因为这个过程放生在 Fuel's  Query Builder 中央, 所有使用Query Builder代码, 宝库 Fuel 的 ORM 包, 都将自动所有转义.
 				</p>
 
 			</article>
