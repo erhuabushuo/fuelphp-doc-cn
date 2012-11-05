@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Modules - General - FuelPHP Documentation</title>
+	<title>模块 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -44,29 +44,28 @@
 
 		<div id="main">
 
-			<h2>Modules</h2>
+			<h2>模块</h2>
 
-			<h3>What is a module?</h3>
+			<h3>什么是模块?</h3>
 
 			<p>
-				A module is a group of independent MVC elements. The use of modules allows for re-usability and encapsulation of your code.
-				A module typically resides within an application sub-directory named <strong>modules</strong>.
-				It is suggested to take advantage of modules whenever you're working on a large project,
-				of which you believe the code-base will be more than just a few lines of code.
-				It will help you to keep things neatly in order.
+				模块是一组独立 MVC 元素. 模块使代码更加复用的，封装的.
+				模块通常放置应用程序子目录<strong>modules</strong>下.
+				我建议在大项目中都使用模块,仅仅多写很少量代码.
+				它将保持代码整洁有序.
 			</p>
 
 			<p>
-				A module can operate independently, like for example a blog module or an album module. You can route directly to the module controllers, without having to access any global code.
-				Modules can also be used in a true HMVC context, where controllers call other controllers, which will produce (a part of) the result needed to generate the result of the page request.
+				模块可以独立操作, 例如博客模块或者相册模块. 你可以直接路由至模块控制器, 无须访问任何全局代码.
+				模块也可以用于 HMVC 上下文中, 控制器访问其他控制器, 这将为请求页面生成所需数据.
 			</p>
 
-			<h3 id="module_config">Module configuration</h3>
+			<h3 id="module_config">模块配置</h3>
 
 			<p>
-				To be able to use modules, you will have to tell Fuel where your modules are stored.
-				By default, this is in the modules folder of your application. You use the 'modules_path' setting in your applications config.php file to define your module path.
-				You can also define multiple paths. If you do, they will be searched in the sequence you have defined them.
+				为能使用模块, 你需要告诉 Fuel 你模块存放位置.
+				默认, 它存放再应用程序的modules目录下. 你可以使用修改应用程序 config.php文件的 'modules_path' 选项来配置你的模块目录.
+				你也可以配置多路径. 这样的话, 将会根据配置顺序来搜索它们.
 			</p>
 
 			<pre class="php"><code>/**
@@ -79,11 +78,11 @@
 	APPPATH.'..'.DS.'globalmods'.DS	// path to our global modules
 ),
 </code></pre>
-			<p>When you define your paths, make sure they end with DS, the Fuel platform independent directory separator.</p>
+			<p>当你定义目录时，不要忘记末尾的DS，它是Fuel的目录分割符号.</p>
 
-			<h3 id="module_namespace">Module namespace</h3>
+			<h3 id="module_namespace">命名空间</h3>
 
-			<p>One of the problems often encountered when working with independently developed code are class name collisions. For example, a lot of modules come with an admin controller. To avoid collisions, in Fuel every module lives in its own PHP namespace, which <strong><u>must</u></strong> be named identical to the folder name of the module.</p>
+			<p>一个经常遇见的问题是独立的代码出现了相同的类名. 例如, 许多模块都使用 admin 控制器. 为避免这种冲突, 在 Fuel 所有模块都使用自己的 PHP 命名空间, <strong><u>必须</u></strong> 使用与所在目录相同的名字.</p>
 
 			<pre class="php"><code>&lt;?php
 /**
@@ -100,20 +99,19 @@ class Controller_Widget
 </code></pre>
 
 			<p class="note">
-				If you have moved your controllers into a namespace like it is explained <a href="./controllers/base.html#/controller_namespacing">here</a>, you have to use
-				the same setup for your module controllers. In this example the namespace will be <var>Mymodule\Controller</var>, the classname <var>Widget</var>.
+				你果你使用控制器按照 <a href="./controllers/base.html#/controller_namespacing">这里</a> 所说明, 那么对于你的模块控制器你需要使用相同的设置. 该例中，命名空间使用 <var>Mymodule\Controller</var>, 类名使用 <var>Widget</var>.
 			</p>
 
-			<h3 id="folder_structure">Module folder structure</h3>
+			<h3 id="folder_structure">模块目录结构</h3>
 
 			<p>
-				You start creating a module by creating a folder for your new module in the modules folder you have defined in the configuration.
-				The folders name determines the name of the module, and the name of the namespace for the classes in the module.
-				This name is also used in the URI if you want to route to the modules controllers, or as part of the <a href="../classes/request.html">Request</a> in case of an HMVC call.
+				通过再你配置的模块目录中创建模块目录结构.
+				目录名决定模块名, 以及再此模块中类命名空间.
+				名字也用在URI中，如果你想路由至模块控制器, 或者作为 <a href="../classes/request.html">请求</a>在 HMVC中 调用.
 			</p>
 			<p>
-				As a module can be viewed as a self contained part of the application, you'll notice that the module folder structure is very familiar.
-				It is the same as the structure of the application folder. The following folder structure is supported for a module:
+				作为一个模块可以被看作是一个自包含的应用程序的一部分, 你会该结构是非常熟悉的.
+				它于应用程序目录是非常相似的. 以下目录结构是为模块所支持的:
 			</p>
 			<ul style="margin-top:-20px">
 				<li>classes
@@ -129,11 +127,10 @@ class Controller_Widget
 				<li>views</li>
 			</ul>
 
-			<h3 id="cross_module_file_loading">Cross modules file loading</h3>
+			<h3 id="cross_module_file_loading">跨模块文件载入</h3>
 
 			<p>
-				Whether it's a config file or a view file cross module file loading must have the
-				module prefixed to the filename:
+				无论它是配置文件还是视图文件，要通过跨模块载入文件都必须使用模块前缀:
 			</p>
 
 			<pre class="php"><code>// Cross load a config
@@ -148,44 +145,43 @@ php oil run modulename::methodname
 
 
 
-			<h3 id="module_routing">Module routing</h3>
+			<h3 id="module_routing">模块路由</h3>
 
 			<p>
-				When you use modules in routed mode, you can add custom routes to your module by including a <b>routes.php</b> in your modules config folder.
-				These routes will be loaded when Fuel detects that the first URI segment refers to a module, and only the routes of that module will be loaded.
-				Those routes will be prepended to the routes array so a possible (:any) route in the main routes config will not match before the module routing is processed.
+				但你在路由模式使用模块, 你可以自定义路由通过包含 <b>routes.php</b> 文件在你的config文件夹.
+				这些路由将会在Fuel检测第一个URI部分是引用至模块时加载， 仅该模块下的路由文件会被加载。
+				这些路由先于路由数组，所以有可能再主路由配置中配置的将不被匹配.
 			</p>
 
 			<p>
-				This implies that module routes can not be used to define routes for global routing or routes for other modules.
-				In other words, the left side should always include the current module as first URI segment.
-				For the right side you can use anything described in the sections above, it's perfectly fine to have a module
-				route to an app controller or another module.
+				这也就意味着模块定义路由不适用于全局路由或者是其他模块的路由.
+				换句话说, 左边部分应当总是包含当前模块作为URI第一部分.
+				右侧可以适用以上如何描述部位, 也可以路由至应用程序控制器或者是其他模块.
 			</p>
 
-			<h3 id="modules_and_hmvc">Modules and HMVC requests</h3>
+			<h3 id="modules_and_hmvc">模块和路由请求</h3>
 
 			<p>
-				Besides using modules as a way of separating logically independent parts of your application,
-				you can also use module controllers in an HMVC context, where one of your application's controllers calls one of more module controllers
-				to create the final result of the URI requested.
-			</p>
-
-			<p>
-				Read the <a href="./hmvc.html">HMVC requests docs</a> to find out more.
-			</p>
-
-			<h3 id="static_calls">Using module classes outside the module</h3>
-
-			<p>
-				It is also possible to use a module's classes outside of it of course.
-				For this to work, Fuel needs to be able to autoload the class when you reference it in your code.
-				Which means you will have to tell Fuel where to find the module. There are two ways to do this.
+				除了使用模块这个方法来分离应用独立程序逻辑,
+				你也可以在 HMVC 中使用模块控制器, 使用一个控制器来调用一个其他模块控制器
+				来建立一个URI请求结果.
 			</p>
 
 			<p>
-				You can preload the module by specifying the module to load in the <code>'always_load'</code>,
-				<code>'modules'</code> setting of your applications <code>config.php</code> file:
+				阅读 <a href="./hmvc.html">HMVC 请求文档</a> 了解更多.
+			</p>
+
+			<h3 id="static_calls">在module目录外使用模块类</h3>
+
+			<p>
+				当然也可以在外部使用模块类.
+				为使该有效, Fuel需能在你引用时自动加载该类.
+				也就是说你必须告诉 Fuel 如果找到该模块. 有两种方法.
+			</p>
+
+			<p>
+				你可以使用应用程序<code>config.php</code>配置文件中 <code>'always_load'</code>,
+				<code>'modules'</code>预加载模块:
 			</p>
 
 			<pre class="php"><code>'always_load' => array(
@@ -200,12 +196,12 @@ php oil run modulename::methodname
 	 */
 	'modules'	=> array('mymodule'),</code></pre>
 
-			<p>You can also add the module manually at runtime, before you use any of the static methods:</p>
+			<p>你可以再使用任何静态方法前，在运行时手动加载模块:</p>
 
 			<pre class="php"><code>// make the Mymodule module accessable
 Module::load('mymodule');</code></pre>
 
-			<p>You then call the module class like this:</p>
+			<p>这样你就可以如下调用模块类:</p>
 
 			<pre class="php"><code>\Mymodule\Myclass::mymethod('params');</code></pre>
 
