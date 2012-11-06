@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Migrations - General - FuelPHP Documentation</title>
+	<title>迁移 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,15 +44,15 @@
 
 		<div id="main">
 
-			<h2>Migrations</h2>
+			<h2>迁移</h2>
 
-			<p>Migrations are a convenient way for you to alter your database in a structured and organized manner. You could edit fragments of SQL by hand but you would then be responsible for telling other developers that they need to go and run them. You’d also have to keep track of which changes need to be run against the production machines next time you deploy.</p>
+			<p>迁移是一个结构化和组织化改变数据库方式. 你可以手动编辑sql片段，但是你需要告知他们去运行它们. 你也需要跟踪变更以便生产中下一次的部署.</p>
 
-			<p>The database table `migration` tracks which migrations have already been run so all you have to do is update your application files and call <kbd>Migrate::current()</kbd> to work out which migrations should be run. The current version is found in core/config/migration.php so like any other config file you should copy this to app/config to make changes.</p>
+			<p>数据库表 `migration` 跟踪哪些迁移已经运行，所有你需要更新的应用文件，调用 <kbd>Migrate::current()</kbd>解决哪些合并需要作. 当前版本可以再 core/config/migration.php 文件，所以像其他配置文件一样，你需要拷贝  app/config 配置过的选项.</p>
 
-			<h3>Creating a Migration</h3>
+			<h3>创建迁移</h3>
 
-			<p>Create a file in the app/migrations folder. The prefix should be an incremental count starting at 001, do not skip numbers and do not have two numbers that match. The first would be something like <kbd>app/migrations/001_example.php</kbd>.</p>
+			<p>在 app/migrations 创建文件. 前缀应该是以增长命名从 001, 不能跳过也不要有两个相同的名称. 第一文件类似 <kbd>app/migrations/001_example.php</kbd>.</p>
 			<pre class="php"><code>namespace Fuel\Migrations;
 
 class Example
@@ -73,16 +73,16 @@ class Example
     }
 }</code></pre>
 
-			<h3 id="run_a_mirgation">Run a Migration</h3>
+			<h3 id="run_a_mirgation">运行迁移</h3>
 
-			<p>A migration can be run in two ways:</p>
+			<p>迁移可以通过两种方法运行:</p>
 
 			<ol>
-				<li><a href="../classes/migrate.html">Migrate class</a></li>
-				<li><a href="../packages/oil/refine.html">Oil Refine Command</a></li>
+				<li><a href="../classes/migrate.html">Migrate 类</a></li>
+				<li><a href="../packages/oil/refine.html">Oil Refine 命令</a></li>
 			</ol>
 
-			<p>The oil command there uses the Refine command to call the migrate <a href="tasks.html">task</a>.</p>
+			<p> oil 使用 Refine 命令运行迁移<a href="tasks.html">作业</a>.</p>
 
 			<pre class="cli"><code>$ php oil refine migrate
 $ php oil refine migrate:current
@@ -91,9 +91,8 @@ $ php oil refine migrate:down
 $ php oil refine migrate --version=10</code></pre>
 
 			<p>
-				Migrations are supported for modules and packages too. You can specify on the oil commandline if you want to
-				migrate all, or only specific modules and/or packages. If you do, you can use '--default' to indicate you want
-				to include app migrations.
+				迁移同样支持模块和包，可以使用 oil命令行迁移所有（all），或者单独模块，包。
+				你可以使用 '--default' 指出你想要包含 app 迁移.
 			</p>
 
 			<pre class="cli"><code>$ php oil refine migrate -all
@@ -103,10 +102,9 @@ $ php oil refine migrate:down --modules=module1,module2 --default
 $ php oil refine migrate --version=10</code></pre>
 
 			<p class="note">
-				<strong>Note: </strong>
-				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrate.php</kbd> as if you have just got
-				a copy of the application, the very latest migration not be the one considered stable. Using oil for migrations will modify this migration
-				config number so the current command will not be relevant in many situations.
+				<strong>注意: </strong>
+				migrate:current 作业是匹配应用程序拷贝在<kbd>fuel/[app|core]/config/migrate.php</kbd>陈列的版本
+				, 最近的迁移不是稳定的，使用oil将会修改这个迁移配置号码，那么当前的命令在情况下将不相关的。
 			</p>
 
 		</div>

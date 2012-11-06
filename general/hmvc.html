@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>HMVC Requests - General - FuelPHP Documentation</title>
+	<title>HMVC 请求 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,16 +44,16 @@
 
 		<div id="main">
 
-			<h2>HMVC requests</h2>
+			<h2>HMVC 请求</h2>
 
 			<p>
-				HMVC requests are a great way to separate logic and re-use controller logic in multiple places.
-				One common use of this is when you use a theme or template engine to generate your pages,
-				where every page is divided into sections, and sections are populated by widgets.
-				By using modules to produce the widget output, you can create a highly modular application with easy to re-use components.
+				HMVC 请求是一个在多个地方较好分离逻辑和到复用控制器逻辑的方法。
+				较为常用的是当你使用主题,
+				所有页面分开为各个区域，区域里放置部件，
+				通过使用模块来生成部件输出，你可以创建高度模块化，易于复用的组件。.
 			</p>
 
-			<p>You call a module controller method using the <a href="../classes/request.html">Request</a> class:</p>
+			<p>使用<a href="../classes/request.html">Request</a> 类调用模块控制器:</p>
 			<pre class="php"><code>// fetch the output of a controller
 $widget = Request::forge('mycontroller/mymethod/parms')->execute();
 echo $widget;
@@ -63,16 +63,13 @@ $widget = Request::forge('mymodule/mycontroller/mymethod/parms', false)->execute
 echo $widget;
 </code></pre>
 			<p class="note">
-				By default, all requests made are processed by Fuel's routing engine. If you want to request something that isn't routable
-				(for example because you don't want a browser to request it), you should pass '<strong>false</strong>' as second parameter
-				to the forge() call. If you don't you will end up with a 404 error when you execute the request!
+				默认，所有请求都是通过 Fuel 的路由引擎。你如果你想请求一些无法路由
+				(例如你不想浏览器请求), 你应该传递 '<strong>false</strong>' 作为第二个参数给 forge(). 否则将会返回404 错误!
 			</p>
 
 			<p>
-				Loading views in HMVC request is the same as in normal requests and controllers accessed by HMVC request
-				are also approachable via the browser. However, in some cases you may not want the component (for example, a widget)
-				to be accessed through the browser. In those cases, you'll want to check if the request is made through HMVC or the browser.
-				The following example shows you how to check for a HMVC request:
+				在HMVC请求中加载视图和普通浏览器访问控制一样。然而，再某些情况下你可能不想让某些组建（例如，部件）通过浏览器方法。
+				这种情况，你需要检查请求是通过HMVC还是浏览器，以下示例告诉你如何检查一个HMVC请求。:
 			</p>
 
 			<pre class="php"><code>&lt;?php
@@ -94,12 +91,11 @@ class Controller_Widget extends Controller
 
 }</code></pre>
 
-			<h3>404 during HMVC requests</h3>
+			<h3>HMVC 请求返回404</h3>
 
 			<p>
-				When a 404 occurs during a HMVC request, a <kbd>HttpNotFoundException</kbd> is thrown. If uncaught, it will trigger
-				the load of the frameworks default 404 page. However, you can prevent this and handle the 404
-				yourself:
+				当在HMVC请求中返回404，抛出 <kbd>HttpNotFoundException</kbd> 异常. 如果未捕获, 它将触发加载框架默认 404 页面. 然而, 你可以组织它，并且自己处理 404
+				错误:
 			</p>
 
 			<pre class="php"><code>try
@@ -112,12 +108,11 @@ catch (HttpNotFoundException $e)
 }
 </code></pre>
 
-			<h3>Traversing Request instances</h3>
+			<h3>遍历请求实例</h3>
 
-			<p>If you want to access other Requests, you can traverse them using two methods:
-				<kbd>$request->parent()</kbd> and <kbd>$request->children()</kbd>. The parent is the Request during
-				which the current Request was created (<kbd>null</kbd> for the main Request). The children are all the Requests
-				created during the current Request.</p>
+			<p>
+如果你想访问其他请求，你可以通过两个方法遍历它们：
+				<kbd>$request->parent()</kbd> 和 <kbd>$request->children()</kbd>. 父请求是当前请求创建者 (主要创建者将会是<kbd>null</kbd> ). 子请求是当前创建的所有请求.</p>
 
 		</div>
 

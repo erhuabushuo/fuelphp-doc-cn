@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Packages - General - FuelPHP Documentation</title>
+	<title>包 - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -44,36 +44,36 @@
 
 		<div id="main">
 
-			<h2>Packages</h2>
+			<h2>包</h2>
 
 			<p>
-				When it comes to organizing, reuse and share your code, packages are a great way to allow you to do this.
-				They can contain all sorts of code like models, third-party libraries, configs and so on.
-				Packages also allow you to extend the core without messing up your app/classes directory.
-				To clarify what packages are, here are the "is" and "is not" on packages.
+				当要组织，分享，复用代码时, 包可以提供你很大的帮助.
+				它可以包含各种各样的代码，例如模型，第三方库，配置文件等。
+				包允许你扩展核心代码而不会弄乱你的 app/classes 目录。
+				要知道包是什么,  那就是"is" 和 "is not" 在包内.
 			</p>
 
-			<h4 id="they_are">Packages...</h4>
+			<h4 id="they_are">包...</h4>
 			<ul>
-				<li>are a great way to organize your code,</li>
-				<li>supply a place to keep third party libraries,</li>
-				<li>allow you to extend other packages without messing with someone's code,</li>
-				<li>a place to extend fuel without messing with core files.</li>
+				<li>很好的组织代码方法,</li>
+				<li>存放第三方库,</li>
+				<li>允许继承其他包，而不用改变原来代码,</li>
+				<li>扩展 fuel 而无须改变核心代码.</li>
 			</ul>
 
-			<h4 id="they_are_not">But..</h4>
+			<h4 id="they_are_not">但是..</h4>
 			<ul>
-				<li>packages do not map to the URL,</li>
-				<li>and are not approachable through HMVC requests</li>
+				<li>包不被映射至URL,</li>
+				<li>不能通过 HMVC 请求</li>
 			</ul>
 
-			<h3 id="installing">Installing packages</h3>
-			<p>Installing packages can be done manually and through <a href="../packages/oil/package.html">oil</a>. To install manually download the package source and place it into your package directory (default in fuel/packages).</p>
-			<p class="note">To actually be able to use your it you must either add it to <code>always_load</code> in
-			<code>app/config/config.php</code> or use <a href="../classes/package.html#method_load">Package::load()</a>.</p>
+			<h3 id="installing">安装包</h3>
+			<p>可以通过手动和 <a href="../packages/oil/package.html">oil</a>安装包. 要手动安装的话下载源文件并且放置再包目录 (默认是 fuel/packages).</p>
+			<p class="note">为能实际使用你需要将它加入配置文件<code>app/config/config.php</code>的 <code>always_load</code> 
+			 或者使用 <a href="../classes/package.html#method_load">Package::load()</a>.</p>
 
-			<h3 id="creation">Creating packages</h3>
-			<p>To help people understand what you are doing it's best to structure your package like so:</p>
+			<h3 id="creation">创建包</h3>
+			<p>为更好理解，最佳包结构如下:</p>
 
 			<pre><code>/packages
     /package
@@ -88,8 +88,8 @@
 </code></pre>
 
 			<p>
-				Every package is expected to have a <em>bootstrap.php</em> located at the base of the package.
-				Use the bootstrap to add the package namespace (to global if you wish). And add the classes for better perfomance.
+				所有包都需要有 <em>bootstrap.php</em> 文件位于包的根目录.
+				使用 bootstrap 来添加包命名空间(也可以是全局的). 以及添加一些类.
 			</p>
 
 			<pre class="php"><code>// Add namespace, necessary if you want the autoloader to be able to find classes
@@ -112,9 +112,9 @@ Autoloader::add_classes(array(
 ));
 </code></pre>
 
-			<p>Once you have your classes in place you can now start using them.</p>
+			<p>当将类配置后，你就可以开始用它们了.</p>
 
-			<p class="note">Note: if package namespaces aren't aliased to global you must supply it:</p>
+			<p class="note">注意: 如果包命名空间非全局的话，你必须手动提供:</p>
 
 			<pre class="php"><code>// If aliased to global just use
 $instance = new Myclass;
