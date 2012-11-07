@@ -10,7 +10,7 @@
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Profiling - General - FuelPHP Documentation</title>
+	<title>Profiling - 常规 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -18,7 +18,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -33,7 +33,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,64 +45,64 @@
 		<div id="main">
 			<h2>Profiling</h2>
 
-			<p>The application profiler bundled with FuelPHP is based on <a href="http://particletree.com/features/php-quick-profiler/">PHP Quick Profiler</a>.</p>
+			<p>
+			FuelPHP绑定的分析器基于 <a href="http://particletree.com/features/php-quick-profiler/">PHP Quick Profiler</a>.</p>
 
-			<h3 id="what_is_profiling">What is profiling?</h3>
+			<h3 id="what_is_profiling">什么是 profiling?</h3>
 
 			<p>
-				The profiler provides profiling and debugging related information without having to add a lot of programmatic overhead
-				to the code. You only need to toggle one config setting to true and you have access to an automated tool to help create a
-				faster and more consistent review experience. Since anyone can use it, the profiler also gives you an idea of where the code
-				stands before the review.
+				分析器提供分析和调试相关信息而无需添加许多其他开销代码。
+				你只需要切换配置选项值为true，那么就会开启一个自动化工具来帮助你建立一个快速，一致的审查体验。
+				由于所有可以使用它，分析器也提供了放置设置。
 			</p>
 
-			<p>The profiler provides you with a tabbed interface, in which you can find the following information:</p>
+			<p>分析器提供了一个标签界面，你可以查看以下信息:</p>
 			<ul>
-				<li>Console. This is the default tab, and gives you information about errors, log entries, memory usage or execution timings.</li>
-				<li>Load time. This is the request load time. It will display execution details in the body of the tab.</li>
-				<li>Database. The number of queries executed, the execution time, and if supported, a query analysis.</li>
-				<li>Memory. Total peak memory used by the request.</li>
-				<li>Files. The fully qualified name of all PHP files included, and their size.</li>
-				<li>Config. The contents of the configuration store at the end of the request.</li>
-				<li>Session. The contents of the session store at the end of the request.</li>
-				<li>GET. The contents of the $_GET array.</li>
-				<li>POST. The contents of the $_POST array.</li>
+				<li>Console. 默认标签, 提供错误信息，log，内存使用，执行时间.</li>
+				<li>Load time. 请求加载时间，tab主体还将显示详细执行信息.</li>
+				<li>Database. 执行查询数，执行了多少时间，如果支持的话，还有查询分析器.</li>
+				<li>Memory. 请求总内存.</li>
+				<li>Files. 包含的所有PHP文件名，以及它们的大小.</li>
+				<li>Config. 请求后的最终配置.</li>
+				<li>Session. 请求后的会话存储.</li>
+				<li>GET.  $_GET 数组内容.</li>
+				<li>POST. $_POST 数组内容.</li>
 			</ul>
 
-			<p>A typical profiler screen looks like this:<img width="850" src="../assets/img/profiler.png" /></p>
+			<p>典型的分析器截图:<img width="850" src="../assets/img/profiler.png" /></p>
 
-			<p>At the bottom of the profiler screen, you will find three options:</p>
+			<p>再分析器截图底部你可以看到三个选项:</p>
 			<ul>
-				<li>Bottom. By default, the profiler is an overlay. Click on this option if you want to see all output, the profiler will move past the end of your output. Click again and it will move back.</li>
-				<li>Height. Toggle between a large (like in the screenshot) or small profiler panel.</li>
-				<li>Details. Toggle the profiler details. If switched off, only the tab bar will be visible.</li>
+				<li>Bottom. 默认，分析器是悬浮的。如果你想看到完整输出的话就单击该选项，分析器将会盖过输出底部，再一次单击将会返回.</li>
+				<li>Height. 切换大小.</li>
+				<li>Details. 切换信息，如果关闭，只有标签条显示.</li>
 			</ul>
 
-			<h3 id="application_profiling">Application profiling</h3>
+			<h3 id="application_profiling">应用程序 profiling</h3>
 
 				<p>
-					Profiling your application is disabled by default. You can configure Fuel to activate the profiler via your applications config/config.php file.
+					默认profiling是禁用的。你可以通过配置Fuel 的config/config.php文件来激活分析器.
 				</p>
 				<pre class="php"><code>'profiling'  => true,
 </code></pre>
 				<p>
-					After the profiler has been enabled, you will see it pop up at the bottom of your browser window.
+					分析器开启后，将再你浏览器窗口底部弹出.
 				</p>
 
-			<h3 id="database_profiling">Database profiling</h3>
+			<h3 id="database_profiling">数据库 profiling</h3>
 
 				<p>
-					Profiling your database connection is disabled by default too. Database profiling is activated on a per connection basis, and can be
-					activated by setting the 'profiler' option of the connection configuration in your config/db.php to true.
+					数据库连接Profiling默认也是禁用的。数据库profiling是基于每个连接来设置开启，
+可以通过设置config/db.php文件 'profiler'选项为true来开启.
 				</p>
 
 				<pre class="php"><code>'profiling'  => true,
 </code></pre>
-				<p class="note">If you use multiple environments, make sure to select the correct db.php configuration file.</p>
+				<p class="note">如果你使用了多个环境，请确保你配置了正确的 db.php 文件.</p>
 
-			<h3 id="adding_profiler_information">Add information to the profiler</h3>
+			<h3 id="adding_profiler_information">分析器中显示更多信息</h3>
 
-				<p>See the documentation of the <a href="../classes/profiler.html">Profiler</a> class to see how you can interact with the profiler.</p>
+				<p>查看关于 <a href="../classes/profiler.html">分析器</a> 类操作更多信息.</p>
 
 		</div>
 
