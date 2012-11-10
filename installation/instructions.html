@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
 	<link rel="shortcut icon" href="./../favicon.ico" />
-	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script src="http://www.google.com.hk/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 	</script>
@@ -130,6 +130,23 @@
 &lt;/IfModule>
 </code>
 </pre>
+
+			<h3 id="install_inside_root2">这太复杂，是否有更简单的办法?</h3>
+
+			<p>
+				替代方法是目录中删除 public目录。将整个压缩包文件路放入文档根目录，然后执行如下操作:
+			</p>
+			<ul>
+				<li>将public目录下所有文件移动到文档根目录</li>
+				<li>删除现在为空的public目录</li>
+				<li>用编辑器打开 <strong>index.php</strong> , 删除APPPATH, COREPATH and PKGPATH中 "/.."  </li>
+			</ul>
+
+			<h3 id="install_inside_subfolders">那么子目录呢?</h3>
+			<p>仍旧执行以上步骤，接着:</p>
+			<ul>
+				<li>编辑器打开 <strong>.htaccess</strong> , 改变 RewriteRule 为 <em>RewriteRule ^(.*)$ /你的子目录/index.php/$1</em></li>
+			</ul>
 
 			<h2 id="setting_the_environment">设定环境</h2>
 
