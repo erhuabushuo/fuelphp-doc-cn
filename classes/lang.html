@@ -11,7 +11,7 @@
 		var class_prefix = "Lang::";
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>Lang - Classes - FuelPHP Documentation</title>
+	<title>Lang - 类 - FuelPHP 文档</title>
 </head>
 <body>
 	<div id="container">
@@ -19,7 +19,7 @@
 			<div class="table">
 				<h1>
 					<strong>FuelPHP, a PHP 5.3 Framework</strong>
-					Documentation
+					文档
 				</h1>
 
 				<form id="google_search">
@@ -34,7 +34,7 @@
 
 				<div class="clear"></div>
 			</nav>
-			<a href="#" id="toc_handle">table of contents</a>
+			<a href="#" id="toc_handle">目录</a>
 			<div class="clear"></div>
 		</header>
 
@@ -45,36 +45,35 @@
 
 		<div id="main">
 
-			<h2>Lang Class</h2>
+			<h2>Lang 类</h2>
 
-			<p>The Lang class allows you to set language variables using language files in your application.</p>
+			<p>Lang类允许应用程序使用语言文件来设置语言变量.</p>
 
 			<p>
-				The default language, which is <code>en</code>, is set in <kbd>app/config/config.php</kbd>.
-				Use the <a href="./config.html#method_set">Config set method</a> to change the value.
+				默认<kbd>app/config/config.php</kbd>将语言设置为<code>en</code>。
+				使用<a href="./config.html#method_set">Config 设置方法</a> 改变值.
 			</p>
 			<pre class="php"><code>Config::set('language', 'cy');</code></pre>
 
-			<h3 id="lang_groups">Lang File Types</h3>
-
-			You can use different file layouts to store your language files. The layout type is determined by the file extension:
+			<h3 id="lang_groups">Lang 文件类型</h3>
+			你可以使用不同结构来保存语言文件。结构类型通过文件扩展名决定x:
 			<ul>
 				<li>
-					PHP. The default type. A PHP file should return an array structure.
+					PHP. 默认类型. PHP文件应该返回数组结构.
 					<pre class="php"><code> return array('key' => 'value');</code></pre>
 				</li>
 				<li>
-					INI. See <a href="http://en.wikipedia.org/wiki/INI_file">this page</a> for a definition of the ini-file layout.
+					INI. 查看 <a href="http://en.wikipedia.org/wiki/INI_file">该页</a> 如何定义ini文件结构.
 					<pre class="ini"><code> [group]
 key=value</code></pre>
 				</li>
 				<li>
-					YAML. See <a href="http://en.wikipedia.org/wiki/YAML">this page</a> for a definition of the yaml-file layout.
+					YAML. 查看 <a href="http://en.wikipedia.org/wiki/YAML">该页</a> 如何定义 yaml 文件结构.
 					<pre class="yaml"><code> group:
    key: value</code></pre>
 				</li>
 				<li>
-					JSON. See <a href="http://en.wikipedia.org/wiki/JSON">this page</a> for a definition of the json-file layout.
+					JSON. 查看 <a href="http://en.wikipedia.org/wiki/JSON">该页</a> 如何定义 json 文件类型.
 					<pre class="javascript"><code> {
 "group" :
     {
@@ -84,11 +83,11 @@ key=value</code></pre>
 				</li>
 			</ul>
 
-			<p>If you don't specify a file type, Lang::load() will default to the 'php' type.</p>
+			<p>如果没有定义类型, Lang::load() 将默认使用 'php' 类型.</p>
 
 			<article>
 				<h4 class="method" id="method_load">load($file, $group = null, $language = null, $overwrite = false)</h4>
-				<p>The <strong>load</strong> method allows you to load a language file.</p>
+				<p> <strong>load</strong> 方法允许你加载语言文件.</p>
 				<table class="method">
 					<tbody>
 					<tr>
